@@ -1,0 +1,52 @@
+﻿@using BowntDAL
+@model List<tb_About>
+@{
+    ViewBag.Title = "List";
+    BowntdbEntities entity = new BowntdbEntities();
+}
+<script src="~/Scripts/pages/wbotn-helper.js"></script>
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li>
+            <a href="#">应用列表</a>
+        </li>
+    </ul>
+</div>
+<form action="@Url.Action("Edit")" method="post" enctype="multipart/form-data">
+    <div class="rightinfo">
+        <div class="tools">
+            <ul class="toolbar">
+                <li class="click">
+                    <a href="@Url.Action("Add")">
+                        <span><img src="/images/t01.png" /></span>添加
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <table class="tablelist">
+            <thead>
+                <tr>
+                    <th>标题</th>
+                    <th>语言</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Title
+                        </td>
+                        <td>@entity.tb_Language.FirstOrDefault(a=>a.Id == item.LanguageId).Language</td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { item.Id })" class="tablelink">[编辑]</a>
+                            <a href="javascript:Delete(@item.Id,'@Url.Action("Delete")')" class="tablelink">[删除]</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>

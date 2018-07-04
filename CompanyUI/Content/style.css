@@ -1,0 +1,192 @@
+﻿body {
+    font-family: "微软雅黑";
+    font-weight: normal;
+}
+
+.box-in {
+    /*border: 2px solid yellow;*/
+}
+
+.img-box {
+    cursor: pointer;
+    padding: 5px;
+    position: relative;
+    margin-left: -17px;
+    margin-right: 10px;
+    border-left-color: #1a1a1a;
+}
+
+.border-dy {
+    border-right: 2px solid yellow;
+}
+
+.box-in {
+    margin-left: -30px;
+    padding-left: 18px;
+    outline: 2px solid yellow;
+}
+
+    .box-in > div:first-child {
+        width: 2px;
+        height: 100%;
+        position: absolute;
+        background-color: #1a1a1a;
+        left: -2px;
+        top: 0px;
+    }
+
+.tab {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    padding-top: 30px;
+    background-color: #1a1a1a;
+}
+
+#welcome {
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: #1a1a1a;
+    display: table;
+}
+
+    #welcome > div {
+        display: table-cell;
+        vertical-align: middle;
+    }
+
+.anim {
+    animation: sc 1.5s 2;
+    animation-direction: alternate;
+}
+
+
+@keyframes sc {
+    0% {
+        width: 192px;
+        height: 302px;
+    }
+
+    50% {
+        width: 0px;
+        height: 0px;
+        background-image: url(/Images/plog3.png);
+    }
+
+    51% {
+        background-image: url(/Images/plog2.png);
+    }
+
+    100% {
+        width: 582px;
+        height: 42px;
+        background-image: url(/Images/plog2.png);
+    }
+}
+
+.list {
+    float: left;
+    width: 33%;
+    padding-left: 50px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-top: 15px;
+}
+
+    .list > a {
+        color: white;
+    }
+
+    .list > a:hover{
+        color:#fedf2d;
+        text-decoration:none;
+    }
+
+a {
+    color: white;
+    font-size: 1.0em;
+    font-style: normal;
+}
+
+    a:hover {
+        text-decoration: none;
+        color: yellow;
+    }
+
+
+.tab > .nav {
+    margin-left: 50px;
+}
+
+.menu {
+    float: left;
+    width: 81px;
+    margin-right: 20px;
+    cursor: pointer;
+    background-color: #909090;
+}
+
+    .menu > span {
+        display: inline-block;
+        width: 56px;
+        text-align: center;
+    }
+
+    .menu > i {
+        display: inline-block;
+        width: 20px;
+        height: 100%;
+        background-color: rgba(89, 83, 83, 0.46);
+        text-align: center;
+        font-weight: 300;
+        opacity: 0.5;
+        float: right;
+        line-height: inherit;
+        font-weight: 600;
+    }
+
+    .menu:hover {
+        background-color: #fedf2d;
+    }
+
+.menu-active {
+    background-color: #fedf2d;
+}
+
+.container {
+    /*padding-top: 15px;*/
+}
+
+.listbody {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pre {
+    width: 299px;
+    height: 336px;
+    position: absolute;
+    right: 15px;
+    bottom: -24px;
+}
+
+    .pre > img {
+        width: 100%;
+        height: 100%;
+    }
+
+.pageing {
+    position: absolute;
+    text-align: center;
+    width: 100%;
+    bottom: 0px;
+    left: 0;
+}

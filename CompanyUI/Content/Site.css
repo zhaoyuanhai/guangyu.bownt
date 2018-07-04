@@ -1,0 +1,93 @@
+﻿body {
+    background-color: #1A1A1A;
+}
+
+.header {
+    background: url(/Images/head-back.jpg) no-repeat;
+    background-size: contain;
+    /*margin-top: -15px;*/
+}
+
+.sel-language {
+    margin-top: 10px;
+    margin-right: 50px;
+    float: right;
+    background-color: #1e1e1e;
+    color: white;
+    border-color: #818181;
+}
+
+.img-border {
+    height: 100%;
+    border: 3px solid #fedf2d;
+}
+
+.about {
+    text-align: center;
+}
+
+address {
+    color: #fedf2d;
+    font-size: 10px;
+}
+
+/*调整导航栏宽度*/
+.navbar {
+    border: 2px solid #fedf2d;
+    /*width: 100%;*/
+}
+
+/*调整nav宽度100%*/
+/*.navbar > ul.nav {
+                width: 100%;
+                margin-top:4px;
+            }*/
+
+/*调整单个导航向的宽度*/
+/*.navbar > ul.nav > li {
+                    width: 14%;
+                }*/
+
+/*调整nav宽度*/
+/*.navbar > .nav > li > a {
+                padding:10px 0px;
+            }*/
+
+/*.navbar > .nav > li > a:first-child{
+                padding-left:15px;
+            }*/
+
+/*调整导航栏border的样式*/
+.bown-border {
+    border: 2px solid #fedf2d;
+}
+
+/*调整avn文本颜色*/
+.navbar > ul.nav > li > a {
+    color: #fedf2d;
+}
+
+/*调整项nav鼠标移入时的样式*/
+.bown-color > ul.nav > li > a:hover {
+    color: white;
+}
+
+.hr-border {
+    border-top: 2px solid #fedf2d;
+}
+
+.nav > li > a:active {
+    color: #fedf2d;
+}
+
+.logo {
+    width: 78px;
+    position: absolute;
+    top: 0px;
+    left: 48%;
+    z-index: 100;
+}
+
+.navbar-inverse {
+    background-color: transparent;
+}

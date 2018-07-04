@@ -1,0 +1,127 @@
+﻿@using CompanyUI.Models;
+@using BowntDAL;
+@{
+    ViewBag.Title = "ProductList";
+    BowntdbEntities entity = new BowntdbEntities();
+    LanguageModel language = ViewBag.Language;
+}
+
+@section style{
+    <style type="text/css">
+        .menu {
+            float: left;
+            width: 80px;
+            margin-right: 20px;
+            cursor: pointer;
+            background-color: #b9b9b9;
+        }
+
+            .menu > span {
+                display: inline-block;
+                width: 56px;
+                text-align: center;
+            }
+
+            .menu > i {
+                display: inline-block;
+                width: 20px;
+                height: 100%;
+                background-color: gray;
+                text-align: center;
+                font-weight: 300;
+                opacity: 0.5;
+            }
+
+            .menu:hover {
+                background-color: yellow;
+            }
+
+        .menu-active {
+            background-color: yellow;
+        }
+
+        .container {
+            padding-top: 15px;
+        }
+
+        .listbody {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        .list {
+            float: left;
+            width: 50%;
+            padding-left: 50px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-top: 15px;
+        }
+
+        .nav {
+            margin-left: 50px;
+        }
+    </style>
+}
+
+@section script{
+    <script>
+        $(function () {
+            $(".menu").click(function () {
+                $(".menu").removeClass("menu-active");
+                $(this).addClass("menu-active");
+                $.getJSON("/Home/GetProdectByNormId", { id: $(this).data("id") }, function (data) {
+                    var html = "";
+                    for (var i = 0; i < data.Data.length; i++) {
+                        var template = $("#list_temp").html()
+                            .replace("{ProdectName}", data.Data[i].ProdectName)
+                            .replace("{Icon}", data.Data[i].Icon);
+                        html += template;
+                    }
+                    html += '<div style="clear:left;"></div>';
+                    $("#lb").html(html);
+                })
+            });
+        });
+    </script>
+}
+
+<div class="container">
+    <nav class="nav">
+        <div class="menu" data-id="0">
+            <span>全部</span>
+            <i>></i>
+        </div>
+        @foreach (var item in entity.tb_Norms.Where(a => a.LanguageId == language.Id))
+        {
+            <div class="menu" data-id="@item.Id">
+                <span>@item.Name</span>
+                <i>></i>
+            </div>
+        }
+    </nav>
+    <div class="listbody" id="lb">
+        @foreach (var item in entity.tb_Prodect.Where(a => a.LanguageId == language.Id))
+        {
+            <div class="list">
+                <a href="">
+                    <i style="display: block;float: left;">
+                        <img src="@item.Icon" width="20" height="20" />
+                    </i>
+                    <span style="margin-left:10px;line-height:20px;">@item.ProdectName</span>
+                </a>
+            </div>
+        }
+        <div style="clear:left;"></div>
+    </div>
+</div>
+<script type="text/template" id="list_temp">
+    <div class="list">
+        <a href="">
+            <i style="display: block;float: left;">
+                <img src="{Icon}" width="20" height="20" />
+            </i>
+            <span style="margin-left:10px;line-height:20px;">{ProdectName}</span>
+        </a>
+    </div>
+</script>

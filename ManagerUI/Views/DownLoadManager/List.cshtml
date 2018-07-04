@@ -1,0 +1,60 @@
+﻿@using BowntDAL;
+@model List<tb_DownLoad>
+@{
+    ViewBag.Title = "ExclusiveWorksList";
+}
+
+@section head{
+
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">下载中心</a></li>
+        <li><a href="#">文件列表</a></li>
+    </ul>
+</div>
+
+<div class="rightinfo">
+    <div class="tools">
+        <ul class="toolbar">
+            <li class="click">
+                <a href="@Url.Action("AddFile")">
+                    <span><img src="/images/t01.png" /></span>添加
+                </a>
+            </li>
+        </ul>
+    </div>
+    <table class="tablelist">
+        <thead>
+            <tr>
+                <th>序号</th>
+                <th>文件名</th>
+                <th>上传时间</th>
+                <th>文件路径</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int i = 0;}
+            @foreach (tb_DownLoad item in Model)
+            {
+                <tr>
+                    <td>
+                        @(++i)
+                    </td>
+                    <td>@item.Name</td>
+                    <td>@item.FilePath</td>
+                    <td>@item.CreateDate.Value.ToString("yyyy-MM-dd")</td>
+                    <td>
+                        <a href="@Url.Action("SetTop",new { item.Id})">[置顶]</a>
+                        <a href="@item.FilePath" target="_blank" class="tablelink">[查看]</a>
+                        <a href="@Url.Action("Edit",new { item.Id})">[编辑]</a>
+                        <a href="javascript:Delete(@item.Id,'@Url.Action("Delete")')" class="tablelink">[删除]</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,74 @@
+﻿@using BowntDAL
+@model List<tb_Picture>
+@{
+    ViewBag.Title = "List";
+    BowntdbEntities entity = new BowntdbEntities();
+    var pics = entity.tb_PicType.ToList();
+}
+
+@section head{
+    <script src="~/Scripts/pages/wbotn-helper.js"></script>
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li>
+            <a href="#">图片列表</a>
+        </li>
+    </ul>
+</div>
+<form action="@Url.Action("Edit")" method="post" enctype="multipart/form-data">
+    <div class="rightinfo">
+        <div class="tools">
+            <ul class="toolbar">
+                <li class="click">
+                    <a href="@Url.Action("Add", new  { picSort = 2})">
+                        <span><img src="/images/t01.png" /></span>添加
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <table class="tablelist">
+            <thead>
+
+                <tr>
+                    <th>名称</th>
+                    <th>图片</th>
+                    <th>图片类型</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>
+                            @{
+                                string[] str = item.Path.Split(',');
+                                foreach (var path in str)
+                                {
+                                    <img class="bowntImg" src="@path" />
+                                }
+                           
+                            }
+                        </td>
+                        <td>
+                            <select style="opacity:1">
+                                @foreach (var p in pics)
+                                {
+                                    <option value="@item.Id" @(p.Id == item.PicTypeId ? "selected" : string.Empty)>@p.Name</option>
+                                }
+                            </select>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", new { item.Id })" class="tablelink">[编辑]</a>
+                            <a href="javascript:Delete(@item.Id,'@Url.Action("Delete")')" class="tablelink">[删除]</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</form>

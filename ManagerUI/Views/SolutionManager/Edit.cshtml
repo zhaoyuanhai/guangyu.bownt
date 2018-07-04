@@ -1,0 +1,37 @@
+﻿@model BowntDAL.tb_Solution
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.EditorHtml = Model.Content;
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">解决方案</a></li>
+    </ul>
+</div>
+<form action="@Url.Action("Edit")" method="post" enctype="multipart/form-data">
+    <div class="formbody">
+        <div class="formtitle"><span>解决方案</span></div>
+        <ul class="forminfo">
+            <li>
+                <label>详细内容</label>
+                @Html.Partial("_ueditor")
+            </li>
+            
+            <li>
+                <label>&nbsp;</label>
+                <input name="form" type="submit" class="btn btn-info" value="确认保存" onclick="return formSubmits();" />
+            </li>
+        </ul>
+    </div>
+    @Html.HiddenFor(model => Model.Id)
+</form>
+
+
+<table>
+    <caption style="text-align:center"></caption>
+    <tr>
+        <td></td>
+    </tr>
+</table>

@@ -1,0 +1,111 @@
+﻿.AutoSelect{
+}
+.AC_Panel{
+	border: solid 1px #D4EEFA;
+	border-color:#2e587c;
+	background-color:white;
+	font-size:12px;
+	position: absolute;
+	
+    -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);
+    -moz-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);  
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.5);  
+    /*IE6,IE7语法 */
+    *filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=3, OffY=3, Color='gray'); 
+    /*IE8语法,可恶的IE，不同的版本还要写的不一样 */
+    -ms-filter:"progid:DXImageTransform.Microsoft.dropshadow(OffX=3, OffY=3, Color='gray')";
+    z-index:100001;
+}
+	.AC_Inner{
+		/*margin: 3px;*/
+	}
+	
+	.AC_Inner .loading
+	{
+	    line-height:30px;
+	    padding:2px 5px;
+	    padding-left:25px;
+	    background:url(loading.gif) no-repeat 5px center;
+	}
+	
+	.AC_Inner .failure
+	{
+	    line-height:30px;
+	    padding:2px 5px;
+	    padding-left:5px;
+	    color:Red;
+	}
+		
+	.AC_Inner UL{
+		list-style: none;
+		margin: 0px;
+		padding:0px;
+	}
+			
+	.AC_Inner li{
+		display:block;
+	}
+	
+	.AC_Inner li span
+	{
+	    padding: 2px 5px;
+	    color:Gray;
+	    font-weight:bold;
+	}
+	
+	.AC_Inner li a{
+		display:block;
+		padding: 2px 5px;
+		border: solid 1px Transparent!important;
+		_zoom:1;
+		_border: solid 1px white;
+		_filter: chroma(color = white);		
+		text-decoration: none;
+		color: black;
+		overflow: hidden;
+
+	}
+	
+	.AC_Inner li a{
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        text-align:start;
+        text-indent:0;
+        text-rendering:optimizelegibility;
+        text-shadow:none;
+        text-transform:none;
+        white-space:nowrap;
+        text-overflow:ellipsis;
+        overflow:hidden;
+	}			
+
+	
+	.text_info{
+		color:#999;	
+	}
+	
+	.AC_Inner li a.sel{
+		background-color:blue;
+		color:white;				
+		border: solid 1px #57A7B9;		
+	}
+	
+	.AC_Inner li a.sel .text_info{
+		color:white;	
+	}
+	
+	.AC_Inner li a nobr{
+		display:block;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;    /* for IE */
+		-o-text-overflow: ellipsis;    /* for Opera */
+		cursor: pointer!important;
+		cursor:hand
+	}
+	
+	.AC_Inner li a nobr b{
+		color: red;
+	}
+	

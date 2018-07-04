@@ -1,0 +1,230 @@
+﻿@using BowntDAL;
+@{
+    ViewBag.Title = "Index";
+    BowntdbEntities entity = new BowntdbEntities();
+}
+
+@section style{
+    <style>
+        body {
+            font-family: "微软雅黑";
+            font-weight: normal;
+        }
+
+        .box-in {
+            border: 2px solid yellow;
+        }
+
+        .img-box {
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        @@media(min-width:1200px) {
+            .img-box {
+                position: relative;
+                margin-left: -17px;
+                margin-right: 10px;
+                border-left-color: black;
+            }
+
+            .border-dy {
+                border-right: 2px solid yellow;
+            }
+
+            .box-in {
+                margin-left: -32px;
+            }
+        }
+
+        @@media(max-width:1200px) {
+            .img-box {
+                width: 33.33333%;
+                float: left;
+                border-top-color: black;
+            }
+
+            .border-dy {
+                border-bottom: 2px solid yellow;
+            }
+
+            .box-in {
+                margin-top: -7px;
+            }
+        }
+
+        .tab {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 450px;
+            display: none;
+            padding-top: 50px;
+        }
+
+        #welcome {
+            position: fixed;
+            z-index: 100;
+            top: 0;
+            left: 0;
+            text-align: center;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: table;
+        }
+
+            #welcome > div {
+                display: table-cell;
+                vertical-align: middle;
+            }
+
+        .anim {
+            animation: sc 1.5s 2;
+            animation-direction: alternate;
+        }
+
+
+        @@keyframes sc {
+            0% {
+                width: 192px;
+                height: 302px;
+            }
+
+            50% {
+                width: 0px;
+                height: 0px;
+                background-image: url(/Images/plog3.png);
+            }
+
+            51% {
+                background-image: url(/Images/plog2.png);
+            }
+
+            100% {
+                width: 582px;
+                height: 42px;
+                background-image: url(/Images/plog2.png);
+            }
+        }
+
+        .list {
+            float: left;
+            width: 50%;
+            padding-left: 50px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            padding-top: 15px;
+        }
+
+        a {
+            color: white;
+            font-size: 1.0em;
+            font-style: normal;
+        }
+
+            a:hover {
+                text-decoration: none;
+                color: yellow;
+            }
+    </style>
+}
+
+@section script{
+    <script>
+        $(function () {
+            $(".img-box>a").hover(function () {
+                $(".img-box").removeClass("box-in");
+                $(this).parents(".img-box").addClass("box-in");
+
+                //隐藏所有的tab
+                $(".tab").hide();
+                //隐藏图片
+                $("#ax").css("visibility", "hidden");
+                var name = $(this).data("name")
+                $(".tab-" + name).show();
+            });
+
+            $("#container").hover(function () { }, function () {
+                $(".tab").hide();
+                $(".img-box").removeClass("box-in");
+                $("#ax").css("visibility", "initial");
+            });
+
+            $("").click(function () {
+
+            });
+        });
+
+
+
+        $(function () {
+            //setTimeout(function () {
+            //    $("#logo").addClass("anim");
+            //}, 500);
+
+            var img = document.getElementById("logo");
+            img.addEventListener("animationend", function () {
+                $("#welcome").fadeOut(1000);
+            }, false);
+        });
+    </script>
+}
+
+<div class="row" id="container">
+    <div class="col-lg-9">
+        <div class="border-dy" style="position:relative">
+            <img id="ax" style="width:100%;height:500px;" src="/Images/aa.png" />
+            <!--应用领域-->
+            <div class="tab tab-app" style="display:block">
+                @foreach (var item in entity.tb_Prodect)
+                {
+                    <div class="list">
+                        <a href="">
+                            <i style="display: block;float: left;">
+                                <img src="" width="20" height="20" />
+                            </i>
+                            <span style="margin-left:10px;line-height:20px;">@item.ProdectName</span>
+                        </a>
+                    </div>
+                }
+            </div>
+            <!--产品-->
+            <div class="tab tab-pro">
+                <h1>Pro</h1>
+            </div>
+            <!--解决方案-->
+            <div class="tab tab-sul">
+                Sul
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3" style="padding-top:5px;">
+        <div class="img-box">
+            <a href="" data-name="app">
+                <img src="~/Images/app.png" style="width:100%;height:147px;" />
+            </a>
+        </div>
+        <div class="img-box">
+            <a href="" data-name="pro">
+                <img src="/Images/tec.png" style="width:100%;height:147px;" />
+            </a>
+        </div>
+        <div class="img-box">
+            <a href="" data-name="sul">
+                <img src="/Images/sul.png" style="width:100%;height:147px;" />
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="welcome" style="display:none;">
+    <div>
+        <div id="logo"
+             style="background:url(/Images/plog3.png) no-repeat;
+                background-size:contain;
+                width:192px;height:302px;margin:auto">
+        </div>
+    </div>
+</div>

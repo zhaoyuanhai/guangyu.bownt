@@ -1,0 +1,57 @@
+﻿@using BowntDAL;
+@using ManagerUI.Models;
+@model tb_Prodect
+@{
+    ViewBag.Title = "ProductEdit";
+    var Norms = ViewBag.Norms as List<tb_Norms>;
+    var Languages = ViewBag.Languages as List<tb_Language>;
+    var Language = ViewBag.Language as LanguageModel;
+    ViewBag.EditorHtml = Model.Content;
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">产品编辑</a></li>
+    </ul>
+</div>
+<form action="@Url.Action("Edit")" method="post" enctype="multipart/form-data">
+    <div class="formbody">
+        <div class="formtitle"><span>产品编辑</span></div>
+        <ul class="forminfo">
+            <li>
+                <label>标题</label>
+                <cite>
+                    <input type="text" name="Title" class="dfinput" value="@Model.Title" />
+                </cite>
+            </li>
+            <li>
+                <label>规格</label>
+                @Html.DropDownList("NormsId", Norms.Select(a => new SelectListItem()
+                {
+                    Text = a.Name,
+                    Value = a.Id.ToString(),
+                    Selected = a.Id == Model.NormsId
+                }), new { @class = "dfinput"})
+            </li>
+            <li>
+                <label>上传小图</label>
+                <input name="Icon" class="dfinput" type="file" />
+            </li>
+            <li>
+                <label>上传大图</label>
+                <input name="Conver" class="dfinput" type="file" />
+            </li>
+            <li class="clearfix">
+                <label>内容</label>
+                @Html.Partial("_ueditor")
+                <div style="clear:left;"></div>
+            </li>
+            <li>
+                <label>&nbsp;</label>
+                <input name="form" type="submit" class="btn btn-info" value="确认保存" />
+            </li>
+        </ul>
+    </div>
+    @Html.HiddenFor(model => Model.Id)
+</form>

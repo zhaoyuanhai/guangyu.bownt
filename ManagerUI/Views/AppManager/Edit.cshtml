@@ -1,0 +1,37 @@
+﻿@model BowntDAL.tb_Applocation
+@{
+    ViewBag.Title = "编辑领域";
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">@ViewBag.Title</a></li>
+    </ul>
+</div>
+<form action="@Url.Action("Edit")" method="post" enctype="multipart/form-data">
+    <div class="formbody">
+        <div class="formtitle"><span>@ViewBag.Title</span></div>
+        <ul class="forminfo">
+            <li>
+                <label>标题</label>
+                <cite>
+                    <input type="text" id="AppName" required name="AppName" class="dfinput" value="@Model.AppName" />
+                </cite>
+            </li>
+            <li>
+                <label>上传小图</label>
+                <input id="ImgAddress" name="ImgAddress" class="dfinput" type="file" value="@Model.ImgAddress va" />
+
+            </li>
+            <li>
+                <label>上传大图</label>
+                <input id="Conver" name="Conver" class="dfinput" type="file" value="@Model.Conver"/>
+            </li>
+            <li>
+                <label>&nbsp;</label>
+                <input name="form" type="submit" class="btn btn-info" value="确认保存" />
+            </li>
+        </ul>
+    </div>
+</form>

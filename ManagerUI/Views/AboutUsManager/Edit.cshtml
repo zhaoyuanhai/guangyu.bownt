@@ -1,0 +1,49 @@
+﻿@model BowntDAL.tb_About
+@{
+    ViewBag.Title = "ManagerAbountUS";
+    ViewBag.EditorHtml = Model.Content;
+}
+
+@section head{
+    <style>
+        .clearfix:before,
+        .clearfix:after {
+            clear: both;
+            content: "";
+        }
+    </style>
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li>
+            <a href="#">关于我们</a>
+        </li>
+    </ul>
+</div>
+<form action="@Url.Action("Edit")" method="post" enctype="multipart/form-data">
+    <div class="formbody">
+        <div class="formtitle"><span>关于我们</span></div>
+        <ul>
+            <li>
+                <label>标题</label>
+                <cite>
+                    <input type="text" id="Title" name="Title" class="dfinput" value="@Model.Title" />
+                </cite>
+            </li>
+            <li style="margin-top:30px;">
+                <label>内容</label>
+            </li>
+            <li class="clearfix">
+                @Html.Partial("_ueditor")
+                <div style="clear:left;"></div>
+            </li>
+            <li style="margin-top:30px;">
+                <label>&nbsp;</label>
+                <input name="form" type="submit" class="btn btn-info" value="确认保存" onclick="return formSubmits();" />
+            </li>
+        </ul>
+
+    </div>
+</form>

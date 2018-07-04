@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>FlexSlider 2</title>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+    <link rel="stylesheet" href="../flexslider.css" type="text/css" media="screen" />
+</head>
+<body class="loading">
+
+    <section class="slider" style="width:100%;width:700px;">
+        <div class="flexslider">
+            <ul class="slides">
+                <li>
+                    <img src="images/kitchen_adventurer_cheesecake_brownie.jpg" />
+                </li>
+                <li>
+                    <img src="images/kitchen_adventurer_lemon.jpg" />
+                </li>
+                <li>
+                    <img src="images/kitchen_adventurer_donut.jpg" />
+                </li>
+                <li>
+                    <img src="images/kitchen_adventurer_caramel.jpg" />
+                </li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="footer-banner" style="width:728px; margin:0px auto"></div>
+    <script src="../../../../Scripts/jquery-1.8.2.min.js"></script>
+    <script defer src="../jquery.flexslider.js"></script>
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('.flexslider').flexslider({
+                animation: "slide",
+                start: function (slider) {
+                    $('body').removeClass('loading');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

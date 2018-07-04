@@ -1,0 +1,61 @@
+﻿@using BowntDAL;
+@using ManagerUI.Models;
+@{
+    ViewBag.Title = "Add";
+    var Norms = ViewBag.Norms as List<tb_Norms>;
+    var Languages = ViewBag.Languages as List<tb_Language>;
+
+    var language = ViewBag.Language as LanguageModel ?? new LanguageModel();
+}
+@section head{
+
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">产品中心</a></li>
+        <li><a href="#">添加产品</a></li>
+    </ul>
+</div>
+
+<div class="formbody">
+    <form id="f1" action="@Url.Action("Add")" method="post" enctype="multipart/form-data">
+        <div class="formtitle">
+            <span>封面信息</span>
+        </div>
+        <div style="position:relative">
+            <ul class="forminfo">
+                <li>
+                    <label>标题</label>
+                    <input name="Title" id="MainName" type="text" required class="dfinput" />
+                </li>
+                <li>
+                    <label>规格</label>
+                    @Html.DropDownList("NormsId", Norms.Select(a => new SelectListItem()
+                    {
+                        Text = a.Name,
+                        Value = a.Id.ToString(),
+                    }), new { @class = "dfinput", required = "required" })
+                </li>
+                <li>
+                    <label>小图标</label>
+                    <input name="Icon" required type="file" class="dfinput" />
+                </li>
+                <li>
+                    <label>大图</label>
+                    <input name="Conver" required type="file" class="dfinput" />
+                </li>
+                <li class="clearfix">
+                    <label>内容</label>
+                    @Html.Partial("_ueditor")
+                    <div style="clear:left;"></div>
+                </li>
+                <li>
+                    <label>&nbsp;</label>
+                    <input type="submit" value="创建相册" class="btn btn-info" />
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

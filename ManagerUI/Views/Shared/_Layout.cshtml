@@ -1,0 +1,235 @@
+﻿@using BowntDAL;
+@using ManagerUI.Models;
+@{
+    Layout = null;
+    string returnUrl = Request["returnUrl"];
+    BowntdbEntities entity = new BowntdbEntities();
+    var language = ViewBag.Language as LanguageModel ?? new LanguageModel();
+    var languages = entity.tb_Language.ToList();
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/layer-v1.8.5/layer/skin/layer.css" rel="stylesheet" />
+    <link href="~/Content/layer-v1.8.5/layer/skin/layer.ext.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Content/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+    <script src="~/Content/layer-v1.8.5/layer/layer.min.js"></script>
+    <script src="~/Scripts/pages/wbotn-helper.js"></script>
+    <script>
+        $(function () {
+            $("#setLanguage").change(function () {
+                $.post("/Setting/SetLanguage", { id: this.value }, function (data) {
+                    if (data.result) {
+                        window.location.reload();
+                    }
+                }, "json");
+            })
+        })
+    </script>
+
+    <script type="text/javascript">
+        function initWindow() {
+            $("body").css("height", window.innerHeight + "px");
+            $(".leftmenu").css("height", window.innerHeight - 40 - 88 - 30 + "px");
+            $(".page-content").css("width", (window.innerWidth - $(".leftmenu").width()) + "px");
+            $(".page-content").css("height", $(".leftmenu").height() + 40 + "px");
+        }
+
+        $(function () {
+            //初始化 窗体各部分的 大小
+            initWindow();
+            window.onresize = function () {
+                initWindow();
+            }
+        });
+        $(function () {
+            //导航切换
+            $(".menuson .header").click(function () {
+                var $parent = $(this).parent();
+                $(".menuson>li.active").not($parent).removeClass("active open").find('.sub-menus').hide();
+                $parent.addClass("active");
+
+                //保存状态
+
+                if ($(this).next('.sub-menus').size()) {
+                    if ($parent.hasClass("open")) {
+                        $parent.removeClass("open").find('.sub-menus').hide();
+                    } else {
+                        $parent.addClass("open").find('.sub-menus').show();
+                    }
+                }
+            });
+
+            // 三级菜单点击
+            $('.sub-menus li').click(function (e) {
+                $(".sub-menus li.active").removeClass("active");
+                $(this).addClass("active");
+            });
+
+            $('.title').click(function () {
+                var $ul = $(this).next('ul');
+                $('dd').find('.menuson').slideUp();
+                if ($ul.is(':visible')) {
+                    $(this).next('.menuson').slideUp();
+                } else {
+                    $(this).next('.menuson').slideDown();
+                }
+            });
+        });
+    </script>
+    <style>
+        .page-top {
+            background: url(/images/topbg.gif) repeat-x;
+            height: 88px;
+        }
+
+        .page-content {
+            float: left;
+            overflow-y: auto;
+            margin-top: -40px;
+            background-color: white;
+        }
+
+        .place {
+            margin-top: -10px;
+        }
+    </style>
+    @RenderSection("head", false)
+</head>
+
+<body>
+    <div class="page-top">
+        <div class="topleft">
+            <a href="#"><img src="/images/logo.png" title="系统首页" /></a>
+        </div>
+        <div class="topright" style="width:200px;">
+            <div style="position:absolute;top:20px;">
+                <select id="setLanguage" style="opacity:1">
+                    @foreach (var item in languages)
+                    {
+                        <option value="@item.Id" @(language.Id == item.Id ? "selected" : string.Empty)=)>@item.Language</option>
+                    }
+                </select>
+            </div>
+            <ul>
+                <li><a href="@Url.Action("Login","Home")" target="_parent">退出</a></li>
+            </ul>
+            <div class="user">
+                <span>@Session["UserName"]</span>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="lefttop">BOWNT后台</div>
+        <dl class="leftmenu" style="background-color:#f0f9fd">
+            <dd>
+                <div class="title">
+                    <span><img src="/images/leftico01.png" /></span>管理信息
+                </div>
+                <ul class="menuson">
+                    <li>
+                        <div class="header">
+                            <cite></cite>
+                            <a href="#">账户信息</a>
+                            <i></i>
+                        </div>
+                        <ul class="sub-menus">
+                            @*<li><a href="@Url.Action("UserInf","Account")">基本信息</a></li>*@
+                            <li><a href="@Url.Action("Edit","home")">修改密码</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="header">
+                            <cite></cite>
+                            <a href="#">关于我们</a>
+                            <i></i>
+                        </div>
+                        <ul class="sub-menus">
+                            <li><a href="@Url.Action("List","AboutUsManager")">关于我们列表</a></li>
+                            <li><a href="@Url.Action("Add", "AboutUsManager")">添加关于我们</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="header">
+                            <cite></cite>
+                            <a href="#">图片管理</a>
+                            <i></i>
+                        </div>
+                        <ul class="sub-menus">
+                            <li><a href="@Url.Action("List", "Picture")">图片列表</a></li>
+                            <li><a href="@Url.Action("Add", "Picture")">新增图片</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="header">
+                            <cite></cite>
+                            <a href="#">应用领域</a>
+                            <i></i>
+                        </div>
+                        <ul class="sub-menus">
+                            <li>
+                                <a href="@Url.Action("List", "AppManager")">领域列表</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Add", "AppManager")">添加领域</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="header">
+                            <cite></cite>
+                            <a href="#">产品管理</a>
+                            <i></i>
+                        </div>
+                        <ul class="sub-menus">
+                            <li>
+                                <a href="@Url.Action("List", "ProductManager")">产品列表</a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Add", "ProductManager")">添加产品</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="header">
+                            <cite></cite>
+                            <a href="#">解决方案</a>
+                            <i></i>
+                        </div>
+                        <ul class="sub-menus">
+                            <li>
+                                <a href="@Url.Action("Edit", "SolutionManager")">编辑方案</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="header">
+                            <cite></cite>
+                            <a href="#">下载中心</a>
+                            <i></i>
+                        </div>
+                        <ul class="sub-menus">
+                            <li><a href="@Url.Action("List","DownLoadManager")">文件列表</a></li>
+                            <li><a href="@Url.Action("Add","DownLoadManager")">添加文件</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+        <div class="page-content">
+            @RenderBody()
+        </div>
+    </div>
+    <div class="footer">
+        <span>仅供学习交流，请勿用于任何商业用途</span>
+        <i>版权所有 2014 uimaker.com</i>
+    </div>
+</body>
+</html>

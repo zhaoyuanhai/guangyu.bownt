@@ -1,0 +1,56 @@
+﻿@model ManagerUI.Model.LoginModel
+@{
+    Layout = null;
+    ViewBag.Title = "Login";
+}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>WELCOME</title>
+    <link href="~/Content/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/css/select.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script> 
+    <script language="javascript">
+       
+    </script>
+
+</head>
+
+<body style="background-color:#1c77ac; background-image:url(/images/light.png); background-repeat:no-repeat; background-position:center top; overflow:hidden;">
+    <form method="post">
+        @Html.AntiForgeryToken()
+        <div id="mainBody">
+            <div id="cloud1" class="cloud"></div>
+            <div id="cloud2" class="cloud"></div>
+        </div>
+        <div class="logintop">
+            <span>Welcome to the admin interface platform</span>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Help</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </div>
+        <div class="loginbody" style="display:table;height:100%;">
+            <div style="display:table-cell;text-align:center;vertical-align:middle">
+                <div class="loginbox">
+                    <ul>
+                        <li>
+                            @Html.TextBoxFor(m => m.UserName, new { @class = "loginuser" })
+                        </li>
+                        <li>
+                            @Html.PasswordFor(m => m.Password, new { @class = "loginpwd" })
+                        </li>
+                        <li>
+                            <input name="form" type="submit" class="btn btn-info" value="Login" />
+                            <label></label>
+                            <label style="color:red;">@ViewBag.error</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>        
+    </form>
+</body>
+</html>

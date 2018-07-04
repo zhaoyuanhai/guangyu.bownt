@@ -1,0 +1,732 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{730A5F60-7E7F-4B87-8730-95652BE43822}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CompanyUI</RootNamespace>
+    <AssemblyName>CompanyUI</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="App_Start\WhiteSpaceFilter.cs" />
+    <Compile Include="App_Start\WhitespaceFilterAttribute.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LanguageModel.cs" />
+    <Compile Include="Models\ModelBase.cs" />
+    <Compile Include="Models\PageingModel.cs" />
+    <Compile Include="Models\PageingViewModel.cs" />
+    <Compile Include="Models\ProductModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Plugins\bootstrap-paginator\css\bootstrap-pagination.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\bootstrap-responsive.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\bootstrap-responsive.min.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\bootstrap.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\bootstrap.min.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\bootstrapv3.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\bootstrapv3.min.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\documentation.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\arta.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\ascetic.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\brown_paper.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\brown_papersq.png" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\dark.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\default.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\far.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\github.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\googlecode.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\idea.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\ir_black.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\magula.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\monokai.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\pojoaque.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\pojoaque.jpg" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\rainbow.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\school_book.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\school_book.png" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\solarized_dark.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\solarized_light.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\sunburst.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\tomorrow-night-blue.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\tomorrow-night-bright.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\tomorrow-night-eighties.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\tomorrow-night.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\tomorrow.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\vs.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\xcode.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\highlight.js\zenburn.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\css\qunit-1.11.0.css" />
+    <Content Include="Content\Plugins\bootstrap-paginator\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Plugins\bootstrap-paginator\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\Plugins\bootstrap-paginator\img\glyphicons-halflings.png" />
+    <Content Include="Content\Plugins\bootstrap-paginator\img\illustration.png" />
+    <Content Include="Content\Plugins\bootstrap-paginator\lib\bootstrap.js" />
+    <Content Include="Content\Plugins\bootstrap-paginator\lib\bootstrap.min.js" />
+    <Content Include="Content\Plugins\bootstrap-paginator\lib\bootstrapv3.js" />
+    <Content Include="Content\Plugins\bootstrap-paginator\lib\highlight.pack.js" />
+    <Content Include="Content\Plugins\bootstrap-paginator\lib\jquery-1.9.1.min.js" />
+    <Content Include="Content\Plugins\bootstrap-paginator\lib\jquery.history.js" />
+    <Content Include="Content\Plugins\bootstrap-paginator\lib\qunit-1.11.0.js" />
+    <Content Include="Content\Plugins\bootstrap-paginator\src\bootstrap-paginator-zh.js" />
+    <Content Include="Content\Plugins\bootstrap-paginator\src\bootstrap-paginator.js" />
+    <Content Include="Content\Plugins\bootstrap-paginator\src\bootstrap-paginator.min.js" />
+    <Content Include="Content\Plugins\bootstrap-paginator\帮助文档.txt" />
+    <Content Include="Content\Plugins\flexslider\demo\basic-carousel.html" />
+    <Content Include="Content\Plugins\flexslider\demo\carousel-min-max.html" />
+    <Content Include="Content\Plugins\flexslider\demo\css\demo.css" />
+    <Content Include="Content\Plugins\flexslider\demo\dynamic-carousel-min-max.html" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-medium\svg\1110FC_0.svg" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-medium\svg\svg_test.html" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-regular\svg\11014B_0.svg" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-regular\svg\svg_test.html" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-semibold\svg\index.html" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-semibold\svg\style_169898.svg" />
+    <Content Include="Content\Plugins\flexslider\demo\images\kitchen_adventurer_caramel.jpg" />
+    <Content Include="Content\Plugins\flexslider\demo\images\kitchen_adventurer_cheesecake_brownie.jpg" />
+    <Content Include="Content\Plugins\flexslider\demo\images\kitchen_adventurer_donut.jpg" />
+    <Content Include="Content\Plugins\flexslider\demo\images\kitchen_adventurer_lemon.jpg" />
+    <Content Include="Content\Plugins\flexslider\demo\index.html" />
+    <Content Include="Content\Plugins\flexslider\demo\js\demo.js" />
+    <Content Include="Content\Plugins\flexslider\demo\js\froogaloop.js" />
+    <Content Include="Content\Plugins\flexslider\demo\js\jquery.easing.js" />
+    <Content Include="Content\Plugins\flexslider\demo\js\jquery.fitvid.js" />
+    <Content Include="Content\Plugins\flexslider\demo\js\jquery.mousewheel.js" />
+    <Content Include="Content\Plugins\flexslider\demo\js\modernizr.js" />
+    <Content Include="Content\Plugins\flexslider\demo\js\shBrushCss.js" />
+    <Content Include="Content\Plugins\flexslider\demo\js\shBrushJScript.js" />
+    <Content Include="Content\Plugins\flexslider\demo\js\shBrushXml.js" />
+    <Content Include="Content\Plugins\flexslider\demo\js\shCore.js" />
+    <Content Include="Content\Plugins\flexslider\demo\test.html" />
+    <Content Include="Content\Plugins\flexslider\demo\thumbnail-controlnav.html" />
+    <Content Include="Content\Plugins\flexslider\demo\thumbnail-slider.html" />
+    <Content Include="Content\Plugins\flexslider\demo\video-wistia.html" />
+    <Content Include="Content\Plugins\flexslider\demo\video.html" />
+    <Content Include="Content\Plugins\flexslider\flexslider.css" />
+    <Content Include="Content\Plugins\flexslider\fonts\flexslider-icon.svg" />
+    <Content Include="Content\Plugins\flexslider\images\bg_play_pause.png" />
+    <Content Include="Content\Plugins\flexslider\jquery.flexslider-min.js" />
+    <Content Include="Content\Plugins\flexslider\jquery.flexslider.js" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\css\font-awesome-ie7.css" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\css\font-awesome-ie7.min.css" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\css\font-awesome.css" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\css\font-awesome.min.css" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\font\fontawesome-webfont.svg" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\css\prettify.css" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\css\pygments.css" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\font\fontawesome-webfont.svg" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\ico\favicon.ico" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\img\contribution-sample.png" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\img\fort_awesome.jpg" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\img\glyphicons-halflings-white.png" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\img\glyphicons-halflings.png" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\js\backbone.min.js" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\js\bootstrap-2.3.1.min.js" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\js\bootstrap-222.min.js" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\js\jquery-1.7.1.min.js" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\js\prettify.min.js" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\js\site.js" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\js\underscore.min.js" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\js\ZeroClipboard-1.1.7.min.js" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\js\ZeroClipboard-1.1.7.swf" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\cheatsheet.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\community.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\design.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\examples.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\get-started.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\icons.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\index.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\license.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\test.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\whats-new.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\ads\carbon-dark-vertical.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\ads\carbon-light-horizontal.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\ads\carbon-light-vertical.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\brand-license.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\cheatsheet.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\community.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\community\getting-support.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\community\project-milestones.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\community\reporting-bugs.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\community\requesting-new-icons.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\community\submitting-pull-requests.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\animated-spinner.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\bordered-pulled.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\bulleted-lists.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\button-dropdowns.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\button-groups.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\buttons.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\custom.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\form-inputs.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\inline-icons.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\larger-icons.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\navigation.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\new.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\rotated-flipped.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\examples\stacked.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\footer.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\get-started.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\icons.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\icons\brand.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\icons\currency.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\icons\directional.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\icons\medical.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\icons\new.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\icons\text-editor.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\icons\video-player.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\icons\web-application.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\jumbotron-slider.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\jumbotron.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\license.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\navbar.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\stripe-ad.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\stripe-social.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\tell-me-thanks.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\tests\rotated-flipped-inside-anchor.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\tests\rotated-flipped-inside-btn.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\tests\rotated-flipped.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\tests\stacked-inside-anchor.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\tests\stacked.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\thanks-to.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\whats-new.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\why.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_layouts\base.html" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_layouts\icon.html" />
+    <Content Include="Content\Plugins\jquery-gd\jquery-gd20151222.html" />
+    <Content Include="Content\Plugins\jquery-gd\35ff706fd57d11c141cdefcd58d6562b.js" />
+    <Content Include="Content\Plugins\jquery-gd\style.css" />
+    <Content Include="Content\Plugins\jquery-movingBox\css\style.css" />
+    <Content Include="Content\Plugins\jquery-movingBox\index.html" />
+    <Content Include="Content\Plugins\jquery-movingBox\js\jquery.js" />
+    <Content Include="Content\Plugins\jquery-movingBox\js\jquery.movingboxes.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\css\bootstrap.min.css" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\emma-watson-1.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\emma-watson-2.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\emma-watson-3.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\emma-watson-4.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\emma-watson-5.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\emma-watson-6.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\emma-watson-7.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\emma-watson-8.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\emma-watson-9.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\thumbnails\emma-watson-1.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\thumbnails\emma-watson-2.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\thumbnails\emma-watson-3.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\thumbnails\emma-watson-4.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\thumbnails\emma-watson-5.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\thumbnails\emma-watson-6.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\thumbnails\emma-watson-7.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\thumbnails\emma-watson-8.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\img\thumbnails\emma-watson-9.jpg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\js\bootstrap.min.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\js\jquery.min.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\js\main.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\css\default.css" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\css\main.css" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\css\normalize.css" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\dist\viewer.css" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\dist\viewer.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\dist\viewer.min.css" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\dist\viewer.min.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\fonts\icomoon.svg" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\index.html" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\readme.html" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\img\icons.png" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\bind.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\build.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\defaults.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\handlers.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\init.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\intro.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\methods.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\others.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\outro.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\plugin.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\prototype.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\render.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\template.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\utilities.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\variables.js" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\js\viewer.js" />
+    <Content Include="Content\Plugins\jquery-roundabout\97站长网下载说明.txt" />
+    <Content Include="Content\Plugins\jquery-roundabout\css\97zzw.css" />
+    <Content Include="Content\Plugins\jquery-roundabout\images\bg3.png" />
+    <Content Include="Content\Plugins\jquery-roundabout\images\fan_left.png" />
+    <Content Include="Content\Plugins\jquery-roundabout\images\fan_right.png" />
+    <Content Include="Content\Plugins\jquery-roundabout\images\slide1.jpg" />
+    <Content Include="Content\Plugins\jquery-roundabout\images\slide2.jpg" />
+    <Content Include="Content\Plugins\jquery-roundabout\images\slide3.jpg" />
+    <Content Include="Content\Plugins\jquery-roundabout\images\slide4.jpg" />
+    <Content Include="Content\Plugins\jquery-roundabout\images\slide5.jpg" />
+    <Content Include="Content\Plugins\jquery-roundabout\index.html" />
+    <Content Include="Content\Plugins\jquery-roundabout\js\jquery.js" />
+    <Content Include="Content\Plugins\jquery-roundabout\js\roundabout.js" />
+    <Content Include="Content\Plugins\jquery-roundabout\js\roundshapes.js" />
+    <Content Include="Content\Plugins\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Content\Plugins\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Content\Plugins\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\Plugins\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\Plugins\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Plugins\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\Plugins\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Plugins\bootstrap\js\npm.js" />
+    <Content Include="Content\Plugins\jquery-3.0.0\jquery-3.0.0.js" />
+    <Content Include="Content\Plugins\jquery-3.0.0\jquery-3.0.0.min.js" />
+    <Content Include="Content\Plugins\jquery-3.0.0\www.jq22.com.txt" />
+    <Content Include="Content\Plugins\layer2.4\layer.js" />
+    <Content Include="Content\Plugins\layer2.4\skin\default\icon-ext.png" />
+    <Content Include="Content\Plugins\layer2.4\skin\default\icon.png" />
+    <Content Include="Content\Plugins\layer2.4\skin\default\loading-0.gif" />
+    <Content Include="Content\Plugins\layer2.4\skin\default\loading-1.gif" />
+    <Content Include="Content\Plugins\layer2.4\skin\default\loading-2.gif" />
+    <Content Include="Content\Plugins\layer2.4\skin\layer.css" />
+    <Content Include="Content\style.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Plugins\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Content\Plugins\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\Plugins\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Plugins\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Plugins\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Plugins\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Plugins\jquery-3.0.0\jquery插件库.url" />
+    <Content Include="Content\Plugins\jquery-roundabout\images\Thumbs.db" />
+    <Content Include="Content\Plugins\jquery-roundabout\访问97站长网.url" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-medium\eot\1110FC_0.eot" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-medium\ttf\1110FC_0.ttf" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-medium\woff\1110FC_0.woff" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-regular\eot\11014B_0.eot" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-regular\ttf\11014B_0.ttf" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-regular\woff\11014B_0.woff" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-semibold\eot\style_169898.eot" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-semibold\ttf\style_169898.ttf" />
+    <Content Include="Content\Plugins\flexslider\demo\fonts\webfonts\geo-semibold\woff\style_169898.woff" />
+    <Content Include="Content\Plugins\flexslider\demo\images\Thumbs.db" />
+    <Content Include="Content\Plugins\flexslider\fonts\flexslider-icon.eot" />
+    <Content Include="Content\Plugins\flexslider\fonts\flexslider-icon.ttf" />
+    <Content Include="Content\Plugins\flexslider\fonts\flexslider-icon.woff" />
+    <Content Include="Content\Plugins\flexslider\前端里-专注 Web 开发技术和资源分享.url" />
+    <Content Include="Content\Plugins\bootstrap-paginator\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Plugins\bootstrap-paginator\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Plugins\bootstrap-paginator\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\assets\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\fonts\icomoon.eot" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\fonts\icomoon.ttf" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\fonts\icomoon.woff" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\img\icons.psd" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\viewer.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_button.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_canvas.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_container.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_footer.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_icons.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_mixins.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_navbar.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_player.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_title.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_toolbar.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_tooltip.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_utilities.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\src\scss\_variables.scss" />
+    <Content Include="Content\Plugins\jquery-powerful-album-view\爱编程.url" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\.gitignore" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\.ruby-version" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\composer.json" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\CONTRIBUTING.md" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\font\fontawesome-webfont.eot" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\font\fontawesome-webfont.ttf" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\font\fontawesome-webfont.woff" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\font\FontAwesome.otf" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\Gemfile" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\Gemfile.lock" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\less\bootstrap.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\less\core.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\less\extras.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\less\font-awesome-ie7.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\less\font-awesome.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\less\icons.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\less\mixins.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\less\path.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\less\variables.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\package.json" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\README.md" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\scss\font-awesome-ie7.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\scss\font-awesome.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\scss\_bootstrap.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\scss\_core.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\scss\_extras.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\scss\_icons.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\scss\_mixins.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\scss\_path.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\scss\_variables.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\font\fontawesome-webfont.eot" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\font\fontawesome-webfont.ttf" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\font\fontawesome-webfont.woff" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\font\FontAwesome.otf" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\less\bootstrap.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\less\core.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\less\extras.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\less\font-awesome-ie7.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\less\font-awesome.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\less\icons.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\less\mixins.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\less\path.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\less\variables.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\scss\font-awesome-ie7.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\scss\font-awesome.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_bootstrap.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_core.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_extras.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_icons.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_mixins.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_path.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\font-awesome\scss\_variables.scss" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\img\icon-flag.pdf" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\accordion.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\alerts.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\bootstrap.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\breadcrumbs.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\button-groups.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\buttons.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\carousel.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\close.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\code.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\component-animations.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\dropdowns.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\forms.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\grid.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\hero-unit.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\labels-badges.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\layouts.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\media.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\mixins.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\modals.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\navbar.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\navs.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\pager.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\pagination.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\popovers.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\progress-bars.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\reset.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive-1200px-min.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive-767px-max.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive-768px-979px.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive-navbar.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive-utilities.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\responsive.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\scaffolding.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\sprites.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\tables.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\thumbnails.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\tooltip.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\type.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\utilities.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\variables.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\bootstrap-2.3.2\wells.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\lazy.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\mixins.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\responsive-1200px-min.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\responsive-767px-max.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\responsive-768px-979px.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\responsive-navbar.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\responsive.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\site.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\sticky-footer.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\assets\less\variables.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\CNAME" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\icons.yml" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\Makefile" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_includes\license-code.less" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_plugins\icon_page_generator.rb" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_plugins\site.rb" />
+    <Content Include="Content\Plugins\Font-Awesome-3.2.1\_config.yml" />
+    <None Include="Properties\PublishProfiles\companyui.pubxml" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\1.应用领域.jpg" />
+    <Content Include="Images\1.首页水.jpg" />
+    <Content Include="Images\2.水概念.jpg" />
+    <Content Include="Images\2产品中心.jpg" />
+    <Content Include="Images\3解决方案.jpg" />
+    <Content Include="Images\aa.png" />
+    <Content Include="Images\ico.ico" />
+    <Content Include="Images\indexshow.png" />
+    <Content Include="Images\logo.jpg" />
+    <Content Include="Images\plog3.png" />
+    <Content Include="Images\plog2.png" />
+    <Content Include="Images\plog1.png" />
+    <Content Include="Images\head-back.jpg" />
+    <Content Include="Images\default-pdf.png" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\pages\bownTable.js" />
+    <Content Include="Scripts\pages\menulist.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\HomePage.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Home\Test.cshtml" />
+    <Content Include="Views\Home\Products.cshtml" />
+    <Content Include="Views\Home\Solution.cshtml" />
+    <Content Include="Views\Home\AboutBownt.cshtml" />
+    <Content Include="Views\Home\Applications.cshtml" />
+    <Content Include="Views\Home\Innovation.cshtml" />
+    <Content Include="Views\Home\DownLoad.cshtml" />
+    <Content Include="Views\Home\ProductDetial.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\Plugins\jquery-movingBox\images\" />
+    <Folder Include="Files\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BowntDAL\BowntDAL.csproj">
+      <Project>{a93a7921-8a8c-44b2-b0e4-c9dc78edd5ed}</Project>
+      <Name>BowntDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>41365</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:41365/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

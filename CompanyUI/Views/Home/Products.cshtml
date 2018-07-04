@@ -1,0 +1,126 @@
+﻿@using CompanyUI.Models;
+@using BowntDAL;
+@{
+    ViewBag.Title = "ProductList";
+    BowntdbEntities entity = new BowntdbEntities();
+    LanguageModel language = ViewBag.Language;
+    var norms = entity.tb_Norms.OrderBy(a => a.Order);
+    var products = entity.tb_Prodect.OrderByDescending(a => a.Order).Where(a => a.LanguageId == language.Id);
+
+    //分页
+    double pcount = products.Count();
+    int totalPage = (int)Math.Ceiling(pcount / (PageingModel.PageSize * 1.0));
+    totalPage = totalPage == 0 ? 1 : totalPage;
+
+    Dictionary<string, string> dict = new Dictionary<string, string>()
+    {
+        {"en","ALL"},{"fa","TOUT"},{"es","TODO"}
+    };
+}
+
+@section style{
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/Plugins/bootstrap-paginator/css/bootstrap-pagination.css" rel="stylesheet" />
+    <style>
+        .list {
+            width: 30%;
+        }
+    </style>
+}
+
+@section script{
+    <script src="~/Scripts/pages/menulist.js"></script>
+    <script src="~/Content/Plugins/bootstrap-paginator/src/bootstrap-paginator.js"></script>
+    <script src="~/Content/Plugins/bootstrap-paginator/src/bootstrap-paginator-zh.js"></script>
+    <script>
+        $(function () {
+
+            @*分页插件*@
+            var bg = $("#pg").bootstrapPaginator(options);
+            bg.trigger("click");
+
+            $(".menu").menuList({
+                ondataed: function (data) {
+                    options.currentPage = 1;
+                    options.totalPages = data.TotalPage;
+                    bg.bootstrapPaginator("setOptions", options);
+                    layer.close(window.msgindex);
+                },
+                click: function () {
+                    window.msgindex = layer.msg('loading...', { time: 0 });
+                }
+            });
+
+            var options = {
+                currentPage: 1,
+                totalPages: parseInt('@totalPage'),
+                pageUrl: function (type, page, current) {
+                    return "/Home/GetProdectByNormId?id=" +
+                        $(".menu-active").data("id") + "&pageIndex=" + page;
+                },
+                onPageClicked: function (event, originalEvent, type, page) {
+                    originalEvent.preventDefault();
+                    originalEvent.stopPropagation();
+                    $.ajax({
+                        url: originalEvent.target.href,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $("#content li").remove();
+                            $(data).each(function () {
+                                $("#content").append("<li>" + this.name + "</li>");
+                            });
+                        },
+                        error: function (error) { alert("error"); }
+                    });
+                }
+            }
+
+            $("#pg").bootstrapPaginator(options);
+        });
+    </script>
+}
+
+<div class="container" style="min-height:500px;padding-top:25px;">
+    <div style="margin-left:50px;">
+        <nav class="nav">
+            <div class="menu menu-active" data-id="0">
+                <span>@(dict[language.Logogram])</span>
+                <i class="icon-angle-right"></i>
+            </div>
+            @foreach (var item in norms)
+            {
+                <div class="menu" data-id="@item.Id">
+                    <span>@item.Name</span>
+                    <i class="icon-angle-right"></i>
+                </div>
+            }
+        </nav>
+    </div>
+    <div class="listbody clearfix" id="lb">
+        @foreach (var item in products)
+        {
+            <div class="list">
+                <a href="@Url.Action("ProductDetial", new { item.Id })">
+                    <i style="display: block;float: left;">
+                        <img src="@item.Icon" width="20" height="20" />
+                    </i>
+                    <span style="margin-left:10px;line-height:20px;">@item.Title</span>
+                </a>
+            </div>
+        }
+    </div>
+    <div class="pageing" style="display:@(totalPage<=1?"none":"block")">
+        <div id="pg"></div>
+    </div>
+</div>
+<script type="text/template" id="list_temp">
+    <div class="list">
+        <a href="@Url.Action("ProductDetial")/{Id}">
+            <i style="display: block;float: left;">
+                <img src="{Icon}" width="20" height="20" />
+            </i>
+            <span style="margin-left:10px;line-height:20px;">{Title}</span>
+        </a>
+    </div>
+</script>

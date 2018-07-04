@@ -1,0 +1,63 @@
+﻿@using BowntDAL;
+@using ManagerUI.Models;
+@{
+    ViewBag.Title = "Add";
+    var PicTypes = ViewBag.PicTypes as List<tb_PicType>;
+}
+@section head{
+    <script type="text/javascript">
+        $(function () {
+            $("#PicTypeId").change(function () {
+                if ($("#PicTypeId").val() == 2)
+                    $("#bgpic").show().attr("required", "required");
+                else
+                    $("#bgpic").hide().removeAttr("required");
+            });
+        })
+    </script>
+
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">图片管理</a></li>
+        <li><a href="#">添加图片</a></li>
+    </ul>
+</div>
+
+<div class="formbody">
+    <form action="@Url.Action("Add")" method="post" enctype="multipart/form-data">
+        <div class="formtitle">
+            <span>封面信息</span>
+        </div>
+        <div style="position:relative">
+            <ul class="forminfo">
+                <li>
+                    <label>名称</label>
+                    <input name="Name" type="text" required class="dfinput" />
+                </li>
+                <li>
+                    <label>图片类型</label>
+                    @Html.DropDownList("PicTypeId", PicTypes.Select(a => new SelectListItem()
+                    {
+                        Text = a.Name,
+                        Value = a.Id.ToString(),
+                    }), new { @class = "dfinput", required = "required" })
+                </li>
+                <li id="tupian">
+                    <label>图片</label>
+                    <input name="Picture" required type="file" class="dfinput" />
+                </li>
+                <li id="bgpic" style="display:none">
+                    <label>背景图片</label>
+                    <input name='picBg' class="dfinput" type='file' />
+                </li>
+                <li>
+                    <label>&nbsp;</label>
+                    <input type="submit" value="创建相册" class="btn btn-info" />
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

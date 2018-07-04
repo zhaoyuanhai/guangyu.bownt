@@ -1,0 +1,37 @@
+﻿@{
+    string htmlValue = ViewBag.EditorHtml ?? string.Empty;
+}
+<style type="text/css">
+    .fhe_conbox {
+        float: left;
+        margin: 0;
+        padding: 0;
+        width: 880px;
+        min-height: 500px;
+        line-height: 22px;
+    }
+
+        .fhe_conbox ul li {
+            line-height: 22px;
+            min-height: 22px;
+            background-color: #ff0000;
+        }
+
+    #editor_container span {
+        display: inline;
+    }
+</style>
+
+<div class="fhe_conbox">
+    <script id="editor_container" name="Content" type="text/plain" style="width: 880px; height: 500px;">
+        @Html.Raw(htmlValue)
+    </script>
+</div>
+
+<link href="/Scripts/Plugins/ueditor1.4.3/themes/default/css/ueditor.css" rel="stylesheet" />
+<script type="text/javascript" src="/Scripts/Plugins/ueditor1.4.3/ueditor.config.js"></script>
+<script type="text/javascript" src="/Scripts/Plugins/ueditor1.4.3/ueditor.all.min.js"></script>
+<script type="text/javascript" src="/Scripts/Plugins/ueditor1.4.3/lang/zh-cn/zh-cn.js"></script>
+<script type="text/javascript">
+    UE.getEditor('editor_container');
+</script>

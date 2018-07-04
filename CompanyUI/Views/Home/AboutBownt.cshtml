@@ -1,0 +1,68 @@
+﻿@using BowntDAL;
+@using CompanyUI.Models;
+@{
+    ViewBag.Title = "AboutBownt";
+    BowntdbEntities entity = new BowntdbEntities();
+    LanguageModel language = ViewBag.Language;
+    var about = entity.tb_About.FirstOrDefault(a => a.LanguageId == language.Id) ?? new tb_About();
+    var aboutImgs = entity.tb_Picture.Where(a => a.PicTypeId == 3).ToList();
+}
+
+@section script{
+    <script src="~/Content/Plugins/jquery-powerful-album-view/dist/viewer.min.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            var odiv = document.getElementById('div1');
+            var oul = $("ul", odiv)[0];
+            var ali = $("li", odiv);
+            var spa = -2;
+            oul.innerHTML = oul.innerHTML + oul.innerHTML;
+            oul.style.width = 350 * ali.length + 'px';
+
+            function move() {
+                if (oul.offsetLeft < - oul.offsetWidth / 2) {
+                    oul.style.left = '0';
+                }
+                if (oul.offsetLeft > 0) {
+                    oul.style.left = -oul.offsetWidth / 2 + 'px'
+                }
+                oul.style.left = oul.offsetLeft + spa + 'px';
+            }
+            var timer = setInterval(move, 30)
+
+            odiv.onmousemove = function () { clearInterval(timer); }
+            odiv.onmouseout = function () { timer = setInterval(move, 30) };
+
+            //$("#div1").viewer();
+        }
+    </script>
+}
+
+@section style{
+    <link href="~/Content/Plugins/jquery-powerful-album-view/dist/viewer.min.css" rel="stylesheet" />
+    <link href="~/Content/Plugins/jquery-gd/style.css" rel="stylesheet" />
+}
+
+<div style="width:80%;margin:auto;color:#d4d4d4;padding-top:25px;">
+    <h3>@about.Title</h3>
+    @Html.Raw(about.Content)
+</div>
+
+<div class="wrap_it_all" style="padding-bottom:20px;padding-top:20px">
+    <div class="center">
+        <div class="grad_main"></div>
+        <div id="div1" class="wrapper" style="width:60%;margin:auto;">
+            <ul style="width: 1760px;">
+                @for (int i = 0; i < 2; i++)
+                {
+                    foreach (var item in aboutImgs)
+                    {
+                        <li>
+                            <img alt="@item.Name" src="@item.Path">
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

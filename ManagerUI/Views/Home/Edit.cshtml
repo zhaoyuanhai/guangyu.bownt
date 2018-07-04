@@ -1,0 +1,37 @@
+﻿@model ManagerUI.Model.LoginModel
+@{
+    ViewBag.EditorHtml = ViewBag.Model;
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">个人信息</a></li>
+        <li><a href="#">修改信息</a></li>
+    </ul>
+</div>
+
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post))
+{
+    <div class="formbody">
+        <ul class="forminfo">
+            <li>
+                <label>密码：</label>
+                @Html.Password("oldPassword", "", new { @class = "dfinput", required = "required" })
+            </li>
+            <li>
+                <label>新密码：</label>
+                @Html.Password("newPassword", "", new { @class = "dfinput", required = "required" })
+            </li>
+            <li>
+                <label>重复新密码：</label>
+                @Html.Password("rePassword", "", new { @class = "dfinput", required = "required" })
+            </li>
+            <li>
+                <input name="" type="submit" class="loginbtn" value="修改" />
+                <label></label>
+                <label style="color:red;">@ViewBag.Msg</label>
+            </li>
+        </ul>
+    </div>
+}

@@ -1,0 +1,56 @@
+﻿@using System.Web.Script.Serialization;
+@model Hun.Business.Models.PageingModel
+@{
+    Layout = null;
+    JavaScriptSerializer jss = new JavaScriptSerializer();
+    string modelJson = jss.Serialize(Model);
+}
+<script>
+
+    //val 确定0，上一页1 下一页-1,首页2
+    function turnPage(val) {
+        var pcount = parseInt('@Model.pCount');
+        var pindex = parseInt('@Model.pIndex');
+
+        if (val == 0) {//确定跳转
+            var index = $("#tPage").val();
+            if (index > 0 && index <= pcount) {
+                location.href = "@ViewBag.Url?pIndex=" + index + "&type=@ViewBag.Type" + "@(new MvcHtmlString(Model.parameter))";
+            } else {
+                alert("请输入合法页码！");
+            }
+        } else if (val == 1) {//上一页
+            var index = 1;
+            if (pindex - 1 > 0) {
+                index = pindex - 1;
+                location.href = "@ViewBag.Url?pIndex=" + index + "&type=@ViewBag.Type" + "@(new MvcHtmlString(Model.parameter))";
+            }
+        } else if (val == -1) {//下一页
+            var index = 1;
+            if (pindex + 1 <= pcount) {
+                index = pindex + 1;
+                location.href = "@ViewBag.Url?pIndex=" + index + "&type=@ViewBag.Type" + "@(new MvcHtmlString(Model.parameter))";
+            }
+        }
+    }
+</script>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td width="15%" height="32" align="left" bgcolor="#f5f5f5" class="songgray14"></td>
+        <td width="27%" align="left" bgcolor="#f5f5f5" class="songgray14"></td>
+        <td width="13%" align="center" bgcolor="#f5f5f5" class="songgray14"></td>
+        <td width="45%" align="right" bgcolor="#f5f5f5">
+            跳转
+            <input type="text" name="textfield32" size="2" class="input" id="tPage" />
+            <a href="#" onclick="turnPage(0); return false;">
+                <img src="/images/bt_ok.gif" width="31" height="15" border="0" align="absmiddle" />
+            </a> &nbsp;@Model.pIndex /@Model.pCount
+            <a href="#" onclick="turnPage(1); return false;">
+                <img src="/images/pre_page_simple.gif" width="16" height="15" align="absmiddle" hspace="2" />
+            </a>
+            <a href="#" onclick="turnPage(-1); return false;">
+                <img src="/images/next_page_act.gif" width="46" height="15" hspace="2" border="0" align="absmiddle" />&nbsp;
+            </a>
+        </td>
+    </tr>
+</table>

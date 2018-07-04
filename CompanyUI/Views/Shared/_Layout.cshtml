@@ -1,0 +1,98 @@
+﻿@using BowntDAL;
+@using CompanyUI.Models;
+@{
+    BowntdbEntities entity = new BowntdbEntities();
+    var list = entity.tb_Language.ToList();
+    var language = ViewBag.Language as LanguageModel;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    @*<meta name="viewport" content="width=device-width" />*@
+    <meta name="renderer" content="webkit" /> 
+    <meta http-equiv="content-type" content="text/html;charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <link rel="icon" href="~/Images/ico.ico" />
+    <title>@ViewBag.Title</title>
+    
+    @Styles.Render("~/Content/Css")
+    @*<link href="~/Content/Plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Plugins/Font-Awesome-3.2.1/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/Plugins/layer2.4/skin/layer.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />*@
+    @RenderSection("style", false)
+    
+    @Scripts.Render("~/Scripts/Js")
+    @*<script src="/Content/Plugins/jquery-3.0.0/jquery-3.0.0.js"></script>
+    <script src="/Scripts/pages/bownTable.js"></script>
+    <script src="/Content/Plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="~/Content/Plugins/layer2.4/layer.js"></script>*@
+    
+    <script>
+        $(function () {
+            $("#setLanguage").change(function () {
+                $.post("/Setting/SetLanguage", { id: this.value }, function (data) {
+                    if (data.result) {
+                        window.location.reload();
+                    }
+                }, "json");
+            })
+        });
+    </script>
+    @RenderSection("script", false)
+</head>
+<body>
+    <div class="container" style="width:1200px;">
+        <div class="header">
+            <img class="logo" src="~/Images/logo.jpg" />
+            <div class="row clearfix">
+                <div class="col-xs-12 column" style="height:50px;">
+                    @Html.DropDownList("setLanguage", list.Select(a =>
+                    {
+                        var result = new SelectListItem() { Value = a.Id.ToString(), Text = a.Language };
+                        if (a.Id == ViewBag.Language.Id)
+                            result.Selected = true;
+                        return result;
+                    }), new { id = "setLanguage", @class = "sel-language" })
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-xs-12">
+                    <div class="navbar navbar-inverse bown-border bown-color" role="navigation">
+                        <ul class="nav navbar-nav" style="margin-left:80px;">
+                            @foreach (var item in entity.tb_Menu.Where(a=> a.LanguageId == language.Id).OrderBy(a => a.Order))
+                            {
+                                <li>
+                                    <a href="@item.Url">@item.Name</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xs-12">
+                <div class="bown-border">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+        <div class="row clearfix">
+            <div class="col-xs-12 column">
+                <hr class="hr-border" />
+                <div class="about">
+                    <address>
+                        AIOLIA INTERNATIONAL LLC.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        11845 MAYFIELD, LIVONIA, MICHIGAN 48150&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        PHONE : +1 734 427 0341  FAX: +1 734 427 5951&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        EMAIL : INFO@BOWNT.COM
+                    </address>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

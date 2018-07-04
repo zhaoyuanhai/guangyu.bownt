@@ -1,0 +1,74 @@
+﻿@using BowntDAL;
+@using ManagerUI.Models;
+@model tb_Picture
+@{
+    ViewBag.Title = "Edit";
+    var PicTypes = ViewBag.PicTypes as List<tb_PicType>;
+}
+
+@section head{
+    <script>
+        $(function () {
+            $("#PicTypeId").change(function () {
+                if (this.value == "2") {
+                    $("#inp_app").hide();
+                    $("#sel_app").show();
+                }
+                else {
+                    $("#sel_app").hide();
+                    $("#inp_app").show();
+                }
+            });
+        })
+    </script>
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">图片编辑</a></li>
+    </ul>
+</div>
+<form method="post" enctype="multipart/form-data">
+    <div class="formbody">
+        <div class="formtitle"><span>图片编辑</span></div>
+        <ul class="forminfo">
+            <li>
+                <label>名称</label>
+                <cite>
+                    <select id="sel_app" class="dfinput" style="display:@(Model.PicTypeId==2?"inline":"none")">
+                        <option>应用领域</option>
+                        <option>产品中心</option>
+                        <option>解决方案</option>
+                    </select>
+                    <input id="inp_app" style="display:@(Model.PicTypeId!=2?"inline":"none")" type="text" name="Name" required class="dfinput" value="@Model.Name" />
+                </cite>
+            </li>
+            <li>
+                <label>规格</label>
+                @Html.DropDownList("PicTypeId", PicTypes.Select(a => new SelectListItem()
+               {
+                   Text = a.Name,
+                   Value = a.Id.ToString(),
+                   Selected = a.Id == Model.PicTypeId
+               }), new { @class = "dfinput", id = "PicTypeId" })
+            </li>
+            <li>
+                <label>图片</label>
+                <input name="picture" class="dfinput" type="file" />
+            </li>
+            @if (Model.PicTypeId == 2)
+            {
+                <li>
+                    <label>背景图片</label>
+                    <input name="picBg" class="dfinput" type="file" />
+                </li>
+            }
+            <li>
+                <label>&nbsp;</label>
+                <input name="form" type="submit" class="btn btn-info" value="确认保存" />
+            </li>
+        </ul>
+    </div>
+    @Html.HiddenFor(model => Model.Id)
+</form>

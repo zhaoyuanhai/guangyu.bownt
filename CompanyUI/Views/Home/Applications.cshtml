@@ -1,0 +1,47 @@
+﻿@using BowntDAL;
+@using CompanyUI.Models;
+@{
+    ViewBag.Title = "Applications";
+    BowntdbEntities entity = new BowntdbEntities();
+    LanguageModel language = ViewBag.Language;
+}
+
+@section style{
+    <link href="~/Content/style.css" rel="stylesheet" />
+}
+
+@section script{
+    <script>
+        $(function () {
+            @*预览图片事件*@
+            $(".list > a").hover(function () {
+                $("#pre").show().find("img").attr("src", $(this).data("image"));
+            }, function () {
+                $("#pre").hide();
+            });
+        })
+    </script>
+}
+
+<div class="row" id="cc" style="min-height:500px;padding-top:25px;">
+    <div class="col-xs-8 clearfix">
+        @foreach (var item in entity.tb_Applocation.Where(a => a.LanguageId == language.Id))
+        {
+            <div class="list">
+                <a href="javascript:void()" data-image="@item.Conver">
+                    <i style="display: block;float: left;">
+                        <img src="@item.ImgAddress" width="20" height="20" />
+                    </i>
+                    <span style="margin-left:10px;line-height:20px;">@item.AppName</span>
+                </a>
+            </div>
+        }
+    </div>
+    <div class="col-xs-4">
+        <div id="pre" style="padding-top:15px;display:none">
+            <img src="aa" width="250" height="350" />
+        </div>
+    </div>
+</div>
+
+

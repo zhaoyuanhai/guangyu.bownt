@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "下载中心";
+}
+
+@section head{
+    <script>
+
+    </script>
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">下载中心</a></li>
+        <li><a href="#">添加文件</a></li>
+    </ul>
+</div>
+
+<div class="formbody">
+    <form action="@Url.Action("Add")" method="post" enctype="multipart/form-data">
+        <div class="formtitle">
+            <span>下载中心</span>
+        </div>
+        <div style="position:relative">
+            <ul class="forminfo">
+                <li>
+                    <label>名称</label>
+                    <input name="Name" type="text" required class="dfinput" />
+                </li>
+                <li>
+                    <label>文件</label>
+                    <input name="file" type="file" required class="dfinput" />
+                </li>
+                <li>
+                    <label>&nbsp;</label>
+                    <input id="create" type="submit" value="创建相册" class="btn btn-info" />
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

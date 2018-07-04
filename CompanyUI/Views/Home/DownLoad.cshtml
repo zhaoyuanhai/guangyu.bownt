@@ -1,0 +1,91 @@
+﻿@using BowntDAL;
+@using CompanyUI.Models;
+@{
+    ViewBag.Title = "DownLoadCenter";
+    BowntdbEntities entity = new BowntdbEntities();
+
+    var language = ViewBag.Language as LanguageModel;
+    var pdfs = entity.tb_DownLoad.OrderByDescending(a => a.Order).Where(a => a.LanguageId == language.Id).ToList();
+
+    Dictionary<string, string> loadLanauage = new Dictionary<string, string>()
+    {
+        {"en","DOWNLOAD"}, {"fa","TELECHARGER"}, {"es","DESCARGAR"}
+    };
+
+    Dictionary<string, string> showLanguage = new Dictionary<string, string>()
+    {
+        {"en","BROWSE"}, {"fa","FEUILLETER"}, {"es","NAVEGAR"}
+    };
+}
+
+@section style{
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <style>
+        .downlist {
+            width: 25%;
+            float: left;
+            margin: 20px auto;
+            text-align: center;
+            position: relative;
+            color: #fedf2d;
+        }
+
+            .downlist > div {
+                width: 200px;
+                height: 150px;
+                margin: auto;
+                border: 3px solid #eee;
+                position: relative;
+            }
+
+                .downlist > div > img {
+                    position: relative;
+                    width: 100%;
+                    height: 100%;
+                }
+
+                .downlist > div > a {
+                    position: absolute;
+                    bottom: 0px;
+                    width: 50%;
+                    display: none;
+                    color: #1a1a1a;
+                    cursor: pointer;
+                    background-color: #fedf2d;
+                }
+
+                    .downlist > div > a:hover {
+                        background-color: #fcb00d;
+                    }
+
+                    .downlist > div > a:nth-child(2) {
+                        left: 0;
+                    }
+    </style>
+}
+
+@section script{
+    <script>
+        $(function () {
+            $(".downlist").hover(function () {
+                $("a", this).slideDown();
+            }, function () {
+                $("a", this).slideUp();
+            });
+        });
+    </script>
+}
+
+<div class="content clearfix" style="min-height:500px;">
+    @foreach (var item in pdfs)
+    {
+        <div class="downlist">
+            <div>
+                <img src="@(item.Conver ?? "/Images/default-pdf.png")" />
+                <a href="/Home/GetPdf?id=@item.Id&isLoad=true" target="_blank">@(showLanguage[language.Logogram])</a>
+                <a href="/Home/GetPdf?id=@item.Id&isLoad=false" style="left:50%" target="_blank">@(loadLanauage[language.Logogram])</a>
+            </div>
+            @item.Name
+        </div>
+    }
+</div>

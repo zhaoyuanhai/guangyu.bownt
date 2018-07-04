@@ -1,0 +1,306 @@
+﻿@using BowntDAL;
+@using CompanyUI.Models;
+@{
+    ViewBag.Title = "Index";
+    BowntdbEntities entity = new BowntdbEntities();
+    LanguageModel language = ViewBag.Language;
+    var products = entity.tb_Prodect.Where(a => a.LanguageId == language.Id);
+    var norms = entity.tb_Norms.OrderBy(a => a.Order).ToList();
+    var apps = entity.tb_Applocation.Where(a => a.LanguageId == language.Id);
+    var solutions = entity.tb_Solution.Where(a => a.LanguageId == language.Id);
+
+    //分页
+    double pcount = products.Count();
+    var totalPage = (int)Math.Ceiling(pcount / (PageingModel.PageSize * 1.0));
+    totalPage = totalPage == 0 ? 1 : totalPage;
+
+    //项目图片
+    var imgs = entity.tb_Picture.ToList();
+    var projects = imgs.Where(a => a.PicTypeId == 2 && a.LanguageId == language.Id);
+    var homePageImg = imgs.Where(a => a.PicTypeId == 1);
+
+    Dictionary<string, string> dict = new Dictionary<string, string>()
+    {
+        {"en","ALL"},{"fa","TOUT"},{"es","TODO"}
+    };
+}
+
+@section style{
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/Plugins/flexslider/flexslider.css" type="text/css" media="screen" />
+    <link href="~/Content/Plugins/bootstrap-paginator/css/bootstrap-pagination.css" rel="stylesheet" />
+    <style>
+        .flex-control-nav {
+            bottom: 10px;
+        }
+
+        .zoom {
+            animation: zoom 1s;
+            animation-fill-mode: forwards;
+        }
+
+        @@keyframes zoom {
+            from {
+                width: 254px;
+                height: 85px;
+            }
+
+            to {
+                width: 0px;
+                height: 0px;
+            }
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .flexslider {
+            background-color: black;
+        }
+    </style>
+}
+
+@section script{
+    <script src="~/Scripts/pages/menulist.js"></script>
+    <script defer src="~/Content/Plugins/flexslider/jquery.flexslider-min.js"></script>
+    <script src="~/Content/Plugins/bootstrap-paginator/src/bootstrap-paginator.js"></script>
+    <script src="~/Content/Plugins/bootstrap-paginator/src/bootstrap-paginator-zh.js"></script>
+    <script>
+        $(function () {
+            @*欢迎界面加载*@
+            $("#logo").animate({ width: 0, height: 0 }, 1000, function () {
+                $("#welcome").fadeOut(1500);
+            })
+
+            @*首页轮播图*@
+            $('.flexslider').flexslider({
+                animation: "slide",
+                slideshowSpeed: 3000,
+            });
+
+            @*鼠标移入图片事件*@
+            $(".img-box>a").hover(function () {
+                $(".img-box").removeClass("box-in");
+                $(this).parents(".img-box").addClass("box-in");
+
+                @*隐藏所有的tab*@
+                $(".tab").fadeOut();
+                @*隐藏图片*@
+                $("#bander").css("visibility", "hidden");
+                var name = $(this).data("name")
+                $(".tab-" + name).fadeIn();
+
+                $("img", this).attr("src", $("img", this).data("url"));
+            }, function () {
+                $("img", this).attr("src", $("img", this).data("source"));
+            });
+
+            @*鼠标移除容器事件*@
+            $("#container").hover(function () { }, function () {
+                $(".tab").fadeOut();
+                $(".img-box").removeClass("box-in");
+                $("#bander").css("visibility", "visible");
+            });
+
+            @*应用领域预览图片事件*@
+            $(".tab-app > .list > a").hover(function () {
+                $(".pre").show().find("img").attr("src", $(this).data("image"));
+            }, function () {
+                $(".pre").hide();
+            });
+
+            var options = {
+                currentPage: 1,
+                totalPages: parseInt('@totalPage'),
+                pageUrl: function (type, page, current) {
+                    return "/Home/GetProdectByNormId?id=" +
+                            $(".menu-active").data("id") + "&pageIndex=" + page;
+                },
+                onPageClicked: function (event, originalEvent, type, page) {
+                    originalEvent.preventDefault();
+                    originalEvent.stopPropagation();
+                    $.ajax({
+                        url: originalEvent.target.href,
+                        type: "GET",
+                        dataType: "json",
+                        success: function (data) {
+                            $("#content li").remove();
+                            $(data).each(function () {
+                                $("#content").append("<li>" + this.name + "</li>");
+                            });
+                        },
+                        error: function (error) { alert("error"); }
+                    });
+                }
+            };
+            @*分页插件*@
+            var bg = $("#pg").bootstrapPaginator(options);
+            bg.trigger("click");
+
+            @*规格点击事件*@
+            $(".menu").menuList({
+                ondataed: function (data) {
+                    options.currentPage = 1;
+                    options.totalPages = data.TotalPage;
+                    bg.bootstrapPaginator("setOptions", options);
+                    layer.close(window.msgindex);
+                },
+                click: function () {
+                    window.msgindex = layer.msg('loading...', { time: 0 });
+                }
+            });
+        });
+    </script>
+}
+
+<div class="row" id="container" style="min-height:500px;">
+    <div class="col-xs-9">
+        <div class="border-dy" style="position:relative">
+            <section id="bander" style="width:100%;height:500px;">
+                <div class="flexslider" style="height:100%;">
+                    <ul class="slides" style="height:100%;">
+                        @foreach (var item in homePageImg)
+                        {
+                            <li>
+                                <img style="height:100%" src="@item.Path" alt="@item.Name" />
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </section>
+            @*应用领域*@
+            <div class="tab tab-app">
+                @foreach (var item in apps)
+                {
+                    <div class="list">
+                        <a href="javascript:void()" data-image="@item.Conver">
+                            <i style="display: block;float: left;">
+                                <img src="@item.ImgAddress" width="20" height="20" />
+                            </i>
+                            <span style="margin-left:10px;line-height:20px;">@item.AppName</span>
+                        </a>
+                    </div>
+                }
+            </div>
+            @*产品*@
+            <div class="tab tab-pro">
+                <nav class="nav">
+                    <div class="menu menu-active" data-id="0">
+                        <span>@(dict[language.Logogram])</span>
+                        <i>></i>
+                    </div>
+                    @foreach (var item in norms)
+                    {
+                        <div class="menu" data-id="@item.Id">
+                            <span>@item.Name</span>
+                            <i>></i>
+                        </div>
+                    }
+                </nav>
+                <div class="listbody clearfix" id="lb">
+                    @foreach (var item in products)
+                    {
+                        <div class="list">
+                            <a href="@Url.Action("ProductDetial", new { item.Id })">
+                                <i style="display: block;float: left;">
+                                    <img src="@item.Icon" width="20" height="20" />
+                                </i>
+                                <span style="margin-left:10px;line-height:20px;">@item.Title</span>
+                            </a>
+                        </div>
+                    }
+                </div>
+                <div class="pageing" style="display:@(totalPage<=1?"none":"block")">
+                    <div id="pg"></div>
+                </div>
+            </div>
+            @*解决方案*@
+            <div class="tab tab-sul" style="padding-top:0">
+                <div style="height:100%;overflow-y:auto;">
+                    @{
+                        var solution = entity.tb_Solution.FirstOrDefault(a => a.LanguageId == language.Id)
+                            ?? new tb_Solution();
+                    }
+                    @Html.Raw(solution.Content ?? string.Empty)
+                </div>
+            </div>
+            <!--loading-->
+            <div id="loading"></div>
+        </div>
+    </div>
+    <div class="col-xs-3" style="padding-top:5px;">
+        <div class="img-box">
+            <div></div>
+            @{
+                var _app = projects.FirstOrDefault(a => a.Name == "应用领域");
+                if (_app == null)
+                {
+                    _app = new tb_Picture() { Path = "," };
+                }
+                string[] _appimgs = _app.Path.Split(',');
+            }
+            <a href="@Url.Action("Applications")" data-name="app">
+                <img src="@_appimgs[0]" data-url="@_appimgs[1]" data-source="@_appimgs[0]" style="width:100%;height:147px;" />
+            </a>
+        </div>
+        <div class="img-box">
+            <div></div>
+            @{
+                var _pro = projects.FirstOrDefault(a => a.Name == "产品中心");
+                if (_pro == null)
+                {
+                    _pro = new tb_Picture() { Path = "," };
+                }
+                string[] _useimgs = _pro.Path.Split(',');
+            }
+            <a href="@Url.Action("Products")" data-name="pro">
+                <img src="@_useimgs[0]" data-url="@_useimgs[1]" data-source="@_useimgs[0]" style="width:100%;height:147px;" />
+            </a>
+        </div>
+        <div class="img-box">
+            <div></div>
+            @{
+                var _sol = projects.FirstOrDefault(a => a.Name == "解决方案");
+                if (_sol == null)
+                {
+                    _sol = new tb_Picture() { Path = "," };
+                }
+                string[] _solimgs = _sol.Path.Split(',');
+            }
+            <a href="@Url.Action("Solution")" data-name="sul">
+                <img src="@_solimgs[0]" data-url="@_solimgs[1]" data-source="@_solimgs[0]" style="width:100%;height:147px;" />
+            </a>
+        </div>
+        @*预览图*@
+        <div class="pre" style="display:none;">
+            <img src="" />
+        </div>
+    </div>
+</div>
+
+@if (Request.Cookies["user"] == null)
+{
+    Response.Cookies.Add(new HttpCookie("user", "user"));
+    //欢迎
+    <div id="welcome">
+        <div>
+            <div id="logo"
+                 style="background:url(/Images/indexshow.png) no-repeat;
+                    background-size:contain;width:254px;height:85px;margin:auto">
+            </div>
+        </div>
+    </div>
+}
+
+@*Product 列表模板*@
+<script type="text/template" id="list_temp">
+    <div class="list">
+        <a href="@Url.Action("ProductDetial")/{Id}">
+            <i style="display: block;float: left;">
+                <img src="{Icon}" width="20" height="20" />
+            </i>
+            <span style="margin-left:10px;line-height:20px;">{Title}</span>
+        </a>
+    </div>
+</script>
