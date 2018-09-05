@@ -25,6 +25,7 @@ namespace BowntDAL
             this.tb_Solution = new HashSet<tb_Solution>();
             this.tb_DownLoad = new HashSet<tb_DownLoad>();
             this.tb_Picture = new HashSet<tb_Picture>();
+            this.tb_FileType = new HashSet<tb_FileType>();
         }
     
         public int Id { get; set; }
@@ -48,5 +49,7 @@ namespace BowntDAL
         public virtual ICollection<tb_DownLoad> tb_DownLoad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tb_Picture> tb_Picture { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tb_FileType> tb_FileType { get; set; }
     }
 }

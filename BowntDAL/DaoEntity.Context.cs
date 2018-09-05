@@ -27,7 +27,6 @@ namespace BowntDAL
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<tb_About> tb_About { get; set; }
         public virtual DbSet<tb_Applocation> tb_Applocation { get; set; }
         public virtual DbSet<tb_Language> tb_Language { get; set; }
@@ -39,6 +38,8 @@ namespace BowntDAL
         public virtual DbSet<tb_DownLoad> tb_DownLoad { get; set; }
         public virtual DbSet<tb_Picture> tb_Picture { get; set; }
         public virtual DbSet<tb_PicType> tb_PicType { get; set; }
+        public virtual DbSet<tb_File> tb_File { get; set; }
+        public virtual DbSet<tb_FileType> tb_FileType { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

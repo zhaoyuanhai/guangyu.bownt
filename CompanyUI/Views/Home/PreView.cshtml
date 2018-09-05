@@ -1,0 +1,39 @@
+﻿@using System.IO;
+@model string
+@{
+    var type = Path.GetExtension(Model);
+    ViewBag.Title = "PreView";
+}
+
+@(/*视频文件*/)
+@if (type.Equals(".mp4", StringComparison.CurrentCultureIgnoreCase))
+{
+    @section script{
+        <script src="~/Scripts/popcorn.js"></script>
+        <script src="~/Scripts/pages/preview.video.js"></script>
+    }
+    <div class="listbody" id="lb" style="height:500px;overflow-y:hidden">
+        <video class="video" id="ourvideobig" preload="auto" controls="controls">
+            <source src="@Model" />
+        </video>
+    </div>
+}
+else if (type.Equals(".pdf", StringComparison.CurrentCultureIgnoreCase))
+{
+    @section script{
+        <script src="~/Scripts/pdf.js"></script>
+        <script src="~/Scripts/pdf.worker.js"></script>
+        <script>
+            var url = '@Model';
+        </script>
+        <script src="~/Scripts/pages/preview.pdf.js"></script>
+    }
+
+    <div class="listbody" style="height:500px;overflow-y:auto">
+        <canvas id="the-canvas" style="width:100%"></canvas>
+    </div>
+}
+else
+{
+    <div>文件不合法</div>
+}

@@ -19,6 +19,7 @@ namespace BowntDAL
         public string Path { get; set; }
         public string Name { get; set; }
         public Nullable<int> LanguageId { get; set; }
+        public string Conver { get; set; }
     
         public virtual tb_PicType tb_PicType { get; set; }
         public virtual tb_Language tb_Language { get; set; }

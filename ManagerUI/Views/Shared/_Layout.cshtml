@@ -17,11 +17,13 @@
     <link href="~/Content/layer-v1.8.5/layer/skin/layer.css" rel="stylesheet" />
     <link href="~/Content/layer-v1.8.5/layer/skin/layer.ext.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
 
     <script src="~/Scripts/jquery-1.10.2.js"></script>
     <script src="~/Content/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <script src="~/Content/layer-v1.8.5/layer/layer.min.js"></script>
     <script src="~/Scripts/pages/wbotn-helper.js"></script>
+    <script src="~/Scripts/vue.js"></script>
     <script>
         $(function () {
             $("#setLanguage").change(function () {
@@ -30,8 +32,8 @@
                         window.location.reload();
                     }
                 }, "json");
-            })
-        })
+            });
+        });
     </script>
 
     <script type="text/javascript">
@@ -47,7 +49,7 @@
             initWindow();
             window.onresize = function () {
                 initWindow();
-            }
+            };
         });
         $(function () {
             //导航切换
@@ -141,7 +143,6 @@
                             <i></i>
                         </div>
                         <ul class="sub-menus">
-                            @*<li><a href="@Url.Action("UserInf","Account")">基本信息</a></li>*@
                             <li><a href="@Url.Action("Edit","home")">修改密码</a></li>
                         </ul>
                     </li>
@@ -164,7 +165,7 @@
                         </div>
                         <ul class="sub-menus">
                             <li><a href="@Url.Action("List", "Picture")">图片列表</a></li>
-                            <li><a href="@Url.Action("Add", "Picture")">新增图片</a></li>
+                            <li><a href="@Url.Action("SetPicture", "Picture")">新增图片</a></li>
                         </ul>
                     </li>
                     <li>
@@ -220,6 +221,17 @@
                             <li><a href="@Url.Action("Add","DownLoadManager")">添加文件</a></li>
                         </ul>
                     </li>
+                    <li>
+                        <div class="header">
+                            <cite></cite>
+                            <a href="#">文件管理</a>
+                            <i></i>
+                        </div>
+                        <ul class="sub-menus">
+                            <li><a href="@Url.Action("FileType","FileManager")">文件类型</a></li>
+                            <li><a href="@Url.Action("List", "FileManager")">文件列表</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </dd>
         </dl>
@@ -231,5 +243,19 @@
         <span>仅供学习交流，请勿用于任何商业用途</span>
         <i>版权所有 2014 uimaker.com</i>
     </div>
+    <script>
+        (function () {
+            var url = location.pathname;
+            $(".menuson a").each(function () {
+                var href = $(this).attr("href");
+                if (url.toLowerCase().indexOf(href.toLowerCase()) !== -1) {
+                    var li= $(this).parent("li").parents("li");
+                    li.addClass("open active");
+                    li.find(".sub-menus").show();
+                    return false;
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

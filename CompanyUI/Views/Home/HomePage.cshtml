@@ -20,9 +20,9 @@
     var homePageImg = imgs.Where(a => a.PicTypeId == 1);
 
     Dictionary<string, string> dict = new Dictionary<string, string>()
-    {
-        {"en","ALL"},{"fa","TOUT"},{"es","TODO"}
-    };
+{
+{"en","ALL"},{"fa","TOUT"},{"es","TODO"}
+};
 }
 
 @section style{
@@ -163,7 +163,16 @@
                         @foreach (var item in homePageImg)
                         {
                             <li>
-                                <img style="height:100%" src="@item.Path" alt="@item.Name" />
+                                @if (string.IsNullOrWhiteSpace(item.Conver))
+                                {
+                                    <img style="height:100%" src="@item.Path" alt="@item.Name" />
+                                }
+                                else
+                                {
+                                    <a href="@Url.Action("PreView", new { item.Id, type = "tb_Picture" })">
+                                        <img style="height:100%" src="@item.Conver" alt="@item.Name" />
+                                    </a>
+                                }
                             </li>
                         }
                     </ul>

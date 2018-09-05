@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="21f34cb6fd5d48c2b114595eb0817a4a" Name="Diagram1">
-        <EntityTypeShape EntityType="BOWNTDBModel.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" />
         <EntityTypeShape EntityType="BOWNTDBModel.tb_About" Width="1.5" PointX="3" PointY="1.25" />
         <EntityTypeShape EntityType="BOWNTDBModel.tb_Applocation" Width="1.5" PointX="3" PointY="7.25" />
         <EntityTypeShape EntityType="BOWNTDBModel.tb_Language" Width="1.5" PointX="0.75" PointY="3.75" />
@@ -27,6 +26,10 @@
         <EntityTypeShape EntityType="BOWNTDBModel.tb_PicType" Width="1.5" PointX="7.375" PointY="7.125" />
         <AssociationConnector Association="BOWNTDBModel.FK_tb_Picture_tb_PicType" />
         <AssociationConnector Association="BOWNTDBModel.FK_tb_Picture_tb_Language" />
+        <EntityTypeShape EntityType="BOWNTDBModel.tb_File" Width="1.5" PointX="5.25" PointY="20.5" />
+        <EntityTypeShape EntityType="BOWNTDBModel.tb_FileType" Width="1.5" PointX="3" PointY="20.375" />
+        <AssociationConnector Association="BOWNTDBModel.FK_tb_File_tb_FileType" />
+        <AssociationConnector Association="BOWNTDBModel.FK_tb_FileType_tb_Language" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

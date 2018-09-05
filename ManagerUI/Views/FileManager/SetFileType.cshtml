@@ -1,0 +1,35 @@
+﻿@using BowntDAL;
+@model tb_FileType
+@{
+    ViewBag.Title = "SetFileType";
+    BowntdbEntities entities = new BowntdbEntities();
+    var languages = entities.tb_Language.ToList();
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">文件管理</a></li>
+        <li><a href="#">设置文件类型</a></li>
+    </ul>
+</div>
+
+<div class="formbody">
+    <form action="@Url.Action("SetFileType")" method="post">
+        <div class="formtitle">
+            <span>文件类型</span>
+        </div>
+        <div style="position:relative">
+            <ul class="forminfo">
+                <li>
+                    <label>类型名称</label>
+                    @Html.TextBoxFor(x => x.Type, new { required = "required", @class = "dfinput" })
+                </li>
+                <li>
+                    <label>&nbsp;</label>
+                    <input type="submit" value="保存" class="btn btn-info" />
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>

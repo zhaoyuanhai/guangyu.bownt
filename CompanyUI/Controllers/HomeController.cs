@@ -25,6 +25,23 @@ namespace CompanyUI.Controllers
 
         public ActionResult DownLoad() => View();
 
+        public ActionResult PreView(int id, string type)
+        {
+            BowntdbEntities entity = new BowntdbEntities();
+            string url = string.Empty;
+            if (type == "tb_Picture")
+            {
+                var picture = entity.tb_Picture.Find(id);
+                url = picture.Path;
+            }
+            else
+            {
+                var file = entity.tb_File.Find(id);
+                url = file.Path;
+            }
+            return View(url);
+        }
+
         public ActionResult GetPdf(int id)
         {
             BowntdbEntities entity = new BowntdbEntities();

@@ -5,17 +5,58 @@
     var PicTypes = ViewBag.PicTypes as List<tb_PicType>;
 }
 @section head{
+    <style>
+        ._file {
+            display: none;
+        }
+    </style>
+
     <script type="text/javascript">
         $(function () {
             $("#PicTypeId").change(function () {
-                if ($("#PicTypeId").val() == 2)
-                    $("#bgpic").show().attr("required", "required");
-                else
-                    $("#bgpic").hide().removeAttr("required");
-            });
-        })
-    </script>
+                var value = $("#PicTypeId").val();
 
+                if (value == 1) {
+                    $("#isfile").show().attr("required", "required");
+                } else {
+                    $("._file").hide().removeAttr("required");
+                    if ($("[name='isFile']").val() === "True") {
+                        $("#file").show();
+                    }
+                }
+
+                if (value == 2) {
+                    $("#bgpic").show().attr("required", "required");
+                }
+                else {
+                    $("#bgpic").hide().removeAttr("required");
+                }
+            });
+
+            $("[name='isFile']").change(function () {
+                var value = $(this).val();
+                if (value === "True") {
+                    $("#file").show();
+                } else {
+                    $("#file").hide();
+                }
+            });
+
+            var value = $("#PicTypeId").val();
+            if (value == 1) {
+                $("._file").show();
+                if ($("[name='isFile']").val() == "False") {
+                    $("#file").hide();
+                }
+            } 
+
+            if (value == 2) {
+                $("#bgpic").show();
+            } else {
+                $("#bgpic").hide();
+            }
+        });
+    </script>
 }
 
 <div class="place">
@@ -53,9 +94,20 @@
                     <label>背景图片</label>
                     <input name='picBg' class="dfinput" type='file' />
                 </li>
+                <li id="isfile" class="_file">
+                    <label>是否文件</label>
+                    <select class="dfinput" name="isFile">
+                        <option value="False">否</option>
+                        <option value="True">是</option>
+                    </select>
+                </li>
+                <li id="file" class="_file">
+                    <label>文件</label>
+                    <input type="file" name="isFile" class="dfinput" />
+                </li>
                 <li>
                     <label>&nbsp;</label>
-                    <input type="submit" value="创建相册" class="btn btn-info" />
+                    <input type="submit" value="保存" class="btn btn-info" />
                 </li>
             </ul>
         </div>

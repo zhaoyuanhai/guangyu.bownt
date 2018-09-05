@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -465,6 +466,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Files\环保小视频.mp4" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Plugins\bootstrap\css\bootstrap-theme.css.map" />
@@ -627,6 +629,7 @@
     <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_plugins\icon_page_generator.rb" />
     <Content Include="Content\Plugins\Font-Awesome-3.2.1\src\_plugins\site.rb" />
     <Content Include="Content\Plugins\Font-Awesome-3.2.1\_config.yml" />
+    <Content Include="Files\vim.pdf" />
     <None Include="Properties\PublishProfiles\companyui.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\1.应用领域.jpg" />
@@ -659,6 +662,11 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\pages\bownTable.js" />
     <Content Include="Scripts\pages\menulist.js" />
+    <Content Include="Scripts\pages\preview.pdf.js" />
+    <Content Include="Scripts\pages\preview.video.js" />
+    <Content Include="Scripts\pdf.js" />
+    <Content Include="Scripts\pdf.worker.js" />
+    <Content Include="Scripts\popcorn.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -674,6 +682,7 @@
     <Content Include="Views\Home\Innovation.cshtml" />
     <Content Include="Views\Home\DownLoad.cshtml" />
     <Content Include="Views\Home\ProductDetial.cshtml" />
+    <Content Include="Views\Home\PreView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -684,7 +693,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Plugins\jquery-movingBox\images\" />
-    <Folder Include="Files\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

@@ -1,0 +1,56 @@
+﻿@model List<BowntDAL.tb_File>
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li>
+            <a href="#">文件类型列表</a>
+        </li>
+    </ul>
+</div>
+
+<div class="rightinfo">
+    <div class="tools">
+        <ul class="toolbar">
+            <li class="click">
+                <a href="@Url.Action("SetFile")">
+                    <span><img src="/images/t01.png" /></span>添加
+                </a>
+            </li>
+        </ul>
+    </div>
+    <table class="tablelist">
+        <thead>
+            <tr>
+                <th>标题</th>
+                <th>文件地址</th>
+                <th>文件类型</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.Title
+                    </td>
+                    <td>
+                        <a href="@item.Path">
+                            @item.Path
+                        </a>
+                    </td>
+                    <td>@item.tb_FileType.Type</td>
+                    <td>
+                        <a href="@Url.Action("SetTop",new { item.Id})">[置顶]</a>
+                        <a href="@Url.Action("SetFile", new { item.Id })" class="tablelink">[编辑]</a>
+                        <a href="javascript:Delete(@item.Id,'@Url.Action("Delete")')" class="tablelink">[删除]</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

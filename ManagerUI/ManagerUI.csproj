@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -143,6 +144,7 @@
     <Compile Include="Controllers\AppManagerController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DownLoadManagerController.cs" />
+    <Compile Include="Controllers\FileManagerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PictureController.cs" />
     <Compile Include="Controllers\ProductManagerController.cs" />
@@ -936,6 +938,7 @@
     <Content Include="Scripts\Plugins\ueditor1.4.3\ueditor.config.js" />
     <Content Include="Scripts\Plugins\ueditor1.4.3\ueditor.parse.min.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\vue.js" />
     <Content Include="Views\AboutUsManager\Edit.cshtml" />
     <Content Include="Views\AppManager\Edit.cshtml">
       <SubType>Code</SubType>
@@ -977,6 +980,11 @@
     <Content Include="Views\ErrorPage\Page404.cshtml" />
     <Content Include="Views\ErrorPage\Page500.cshtml" />
     <Content Include="Views\DownLoadManager\Edit.cshtml" />
+    <Content Include="Views\FileManager\FileType.cshtml" />
+    <Content Include="Views\FileManager\List.cshtml" />
+    <Content Include="Views\FileManager\SetFileType.cshtml" />
+    <Content Include="Views\FileManager\SetFile.cshtml" />
+    <Content Include="Views\Picture\SetPicture.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

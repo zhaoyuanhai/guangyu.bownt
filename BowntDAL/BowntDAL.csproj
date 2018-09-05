@@ -19,6 +19,8 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -93,9 +95,6 @@
     <Compile Include="sp_helpdiagrams_Result.cs">
       <DependentUpon>DaoEntity.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>DaoEntity.tt</DependentUpon>
-    </Compile>
     <Compile Include="tb_About.cs">
       <DependentUpon>DaoEntity.tt</DependentUpon>
     </Compile>
@@ -103,6 +102,12 @@
       <DependentUpon>DaoEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="tb_DownLoad.cs">
+      <DependentUpon>DaoEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_File.cs">
+      <DependentUpon>DaoEntity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_FileType.cs">
       <DependentUpon>DaoEntity.tt</DependentUpon>
     </Compile>
     <Compile Include="tb_Language.cs">

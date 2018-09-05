@@ -21,8 +21,16 @@ namespace ManagerUI.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            ViewBag.PicTypes = Entities.tb_PicType.ToList();
+            var picList = Entities.tb_PicType.ToList();
+            foreach (var picType in picList)
+            {
+                picType.tb_Picture.Clear();
+            }
+            ViewBag.PicTypes = picList;
+
             var model = Entities.tb_Picture.FirstOrDefault(a => a.Id == id);
+            model.tb_PicType = null;
+            model.tb_Language = null;
             return View(model);
         }
 
@@ -53,8 +61,82 @@ namespace ManagerUI.Controllers
 
         public ActionResult Add()
         {
-            ViewBag.PicTypes = Entities.tb_PicType.ToList();
+            var pics = Entities.tb_PicType.ToList();
+            foreach (var pictype in pics)
+            {
+                pictype.tb_Picture.Clear();
+            }
+            ViewBag.PicTypes = pics;
+
             return View();
+        }
+
+        [HttpGet]
+        public ActionResult SetPicture(int? id)
+        {
+            var pics = Entities.tb_PicType.ToList();
+            foreach (var pictype in pics)
+            {
+                pictype.tb_Picture.Clear();
+            }
+            ViewBag.PicTypes = pics;
+            var model = Entities.tb_Picture.Find(id);
+            var entity = new tb_Picture();
+            if (model != null)
+            {
+                entity.Id = model.Id;
+                entity.Name = model.Name;
+                entity.Path = model.Path;
+                entity.PicTypeId = model.PicTypeId;
+                entity.LanguageId = model.LanguageId;
+                entity.Conver = model.Conver;
+            }
+            return View(entity);
+        }
+
+        [HttpPost]
+        public ActionResult SetPicture(tb_Picture model, bool isFile = false)
+        {
+            if (model.Id == 0)
+            {
+                Entities.tb_Picture.Add(model);
+            }
+            else
+            {
+                Entities.Entry(model).State = System.Data.Entity.EntityState.Modified;
+            }
+
+            List<string> filenames = new List<string>();
+            foreach (string key in Request.Files.Keys)
+            {
+                HttpPostedFileWrapper pid = Request.Files[key] as HttpPostedFileWrapper;
+                if (pid.ContentLength > 0)
+                {
+                    string fileName = basePath + Common.CommonHelper.GetNowLangTime() + key + Path.GetExtension(pid.FileName);
+                    pid.SaveAs(Server.MapPath("~" + fileName));
+                    filenames.Add(fileName);
+                }
+            }
+
+            if (model.PicTypeId == 1)
+            {
+                model.Path = filenames[0];
+                if (isFile)
+                {
+                    model.Conver = filenames[1];
+                }
+            }
+            else
+            {
+                model.Path = String.Join(",", filenames);
+            }
+
+            if (model.PicTypeId == 2)
+                model.LanguageId = Language.Id;
+
+            Entities.SaveChanges();
+
+            return RedirectToAction("List", new { picSort = 2 });
         }
 
         [HttpPost]

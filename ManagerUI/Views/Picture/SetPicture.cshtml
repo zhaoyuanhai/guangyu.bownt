@@ -1,0 +1,96 @@
+﻿@using BowntDAL;
+@using ManagerUI.Models;
+@using System.Web.Script.Serialization;
+@model tb_Picture
+@{
+    ViewBag.Title = "Add";
+    var PicTypes = ViewBag.PicTypes as List<tb_PicType>;
+    var pic = Model;
+    JavaScriptSerializer jss = new JavaScriptSerializer();
+}
+@section head{
+    <script type="text/javascript">
+        $(function () {
+            var model=@MvcHtmlString.Create(jss.Serialize(pic));
+            var picTypes = @MvcHtmlString.Create(jss.Serialize(PicTypes));
+
+            model.isFile = model.Conver ? "True" : "False";
+            new Vue({
+                el: "#app",
+                data: {
+                    model: model,
+                    picTypes: picTypes,
+                    selList: [
+                        "应用领域",
+                        "产品中心",
+                        "解决方案"
+                    ]
+                },
+                mounted: function () {
+
+                },
+                methods: {
+
+                }
+            });
+        });
+    </script>
+}
+
+<div class="place">
+    <span>位置：</span>
+    <ul class="placeul">
+        <li><a href="#">图片管理</a></li>
+        <li><a href="#">添加图片</a></li>
+    </ul>
+</div>
+
+<div class="formbody" id="app">
+    <form action="@Url.Action("SetPicture")" method="post" enctype="multipart/form-data">
+        <div class="formtitle">
+            <span>封面信息</span>
+        </div>
+        <div style="position:relative">
+            <ul class="forminfo">
+                <li>
+                    <label>名称</label>
+                    <select v-if="model.PicTypeId==2" class="dfinput" v-model="model.Name" required>
+                        <option v-for="item in selList">{{ item }}</option>
+                    </select>
+                    <input v-else name="Name" type="text" class="dfinput" v-model="model.Name" required />
+                </li>
+                <li>
+                    <label>图片类型</label>
+                    <select class="dfinput" name="PicTypeId" v-model="model.PicTypeId" required>
+                        <option v-for="item in picTypes" :value="item.Id">{{item.Name}}</option>
+                    </select>
+                </li>
+                <li>
+                    <label>图片</label>
+                    <input name="Picture_File" type="file" class="dfinput" required />
+                </li>
+                <li v-if="model.PicTypeId==2">
+                    <label>背景图片</label>
+                    <input type="file" name="BgImg_File" class="dfinput" required />
+                </li>
+                <li v-if="model.PicTypeId==1">
+                    <label>是否文件</label>
+                    <select class="dfinput" name="isFile" v-model="model.isFile" required>
+                        <option v-for="item in [{value:'False',text:'否'},{value:'True',text:'是'}]" :value="item.value">{{item.text}}</option>
+                    </select>
+                </li>
+                <li v-if="model.PicTypeId==1 && model.isFile==='True'">
+                    <label>文件</label>
+                    <input type="file" name="Conver_File" class="dfinput" required />
+                </li>
+                <li>
+                    <label>&nbsp;</label>
+                    <input type="hidden" name="Id" :value="model.Id" />
+                    <input type="hidden" name="Path" :value="model.Path" />
+                    <input type="hidden" name="Conver" :value="model.Conver" />
+                    <input type="submit" value="保存" class="btn btn-info" />
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
