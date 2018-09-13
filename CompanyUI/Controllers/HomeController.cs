@@ -39,7 +39,15 @@ namespace CompanyUI.Controllers
                 var file = entity.tb_File.Find(id);
                 url = file.Path;
             }
-            return View(url);
+            return View((object)url);
+        }
+
+        public ActionResult PreViewPanel(int id)
+        {
+            BowntdbEntities entity = new BowntdbEntities();
+            var picture = entity.tb_Picture.Find(id);
+            string url = picture.Conver;
+            return View((object)url);
         }
 
         public ActionResult GetPdf(int id)

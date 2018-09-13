@@ -1,0 +1,27 @@
+﻿@model string
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/popcorn.js"></script>
+    <script src="~/Scripts/pages/preview.video.js"></script>
+    <style>
+        html, body, video {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="listbody" id="lb" style="height:100%;width:100%">
+        <video class="video" id="ourvideobig" preload="auto" controls="controls">
+            <source src="@Model" />
+        </video>
+    </div>
+</body>
+</html>

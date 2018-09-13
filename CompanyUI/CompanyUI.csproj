@@ -683,6 +683,7 @@
     <Content Include="Views\Home\DownLoad.cshtml" />
     <Content Include="Views\Home\ProductDetial.cshtml" />
     <Content Include="Views\Home\PreView.cshtml" />
+    <Content Include="Views\Home\PreViewPanel.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -58,6 +58,10 @@
         .flexslider {
             background-color: black;
         }
+
+        .vv > img {
+            cursor: pointer;
+        }
     </style>
 }
 
@@ -150,6 +154,18 @@
                     window.msgindex = layer.msg('loading...', { time: 0 });
                 }
             });
+
+            //视频弹窗
+            $(".vv>img").click(function () {
+                var id = $(this).data("id");
+                var type = "tb_Picture";
+                layer.open({
+                    title:"",
+                    type:2,
+                    area:["700px","400px"],
+                    content:["/Home/PreViewPanel?id="+id,"no"]
+                });
+            });
         });
     </script>
 }
@@ -169,8 +185,8 @@
                                 }
                                 else
                                 {
-                                    <a href="@Url.Action("PreView", new { item.Id, type = "tb_Picture" })">
-                                        <img style="height:100%" src="@item.Conver" alt="@item.Name" />
+                                    <a class="vv" data-url="@item.Conver">
+                                        <img style="height:100%" data-id="@item.Id" src="@item.Path" alt="@item.Name" />
                                     </a>
                                 }
                             </li>
