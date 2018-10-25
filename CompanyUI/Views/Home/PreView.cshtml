@@ -1,6 +1,8 @@
 ﻿@using System.IO;
 @model string
 @{
+    /**/
+
     var type = Path.GetExtension(Model);
     ViewBag.Title = "PreView";
 }
@@ -12,7 +14,7 @@
         <script src="~/Scripts/pages/preview.video.js"></script>
     }
     <div class="listbody" id="lb" style="height:500px;overflow-y:hidden">
-        <video class="video" id="ourvideobig" preload="auto" controls="controls">
+        <video class="video" id="ourvideobig" preload="auto" autoplay="autoplay" style="height:100%;width:100%">
             <source src="@Model" />
         </video>
     </div>

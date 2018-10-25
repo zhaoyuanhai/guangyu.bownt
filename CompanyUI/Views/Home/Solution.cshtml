@@ -1,16 +1,15 @@
 ﻿@using BowntDAL;
 @using CompanyUI.Models;
 @{
-    ViewBag.Title = "SolutionList";
+    ViewBag.Title = "SOLUTIONS";
     BowntdbEntities entity = new BowntdbEntities();
     LanguageModel language = ViewBag.Language;
 }
 
+@section style{
+    <link href="~/Content/filetype.css" rel="stylesheet" />
+}
 
 <div class="listbody" id="lb" style="height:500px;overflow-y:auto">
-    @{
-        var solution = entity.tb_Solution.FirstOrDefault(a => a.LanguageId == language.Id)
-            ?? new tb_Solution();
-    }
-    @Html.Raw(solution.Content ?? string.Empty)
+    @Html.Partial("FileType")
 </div>

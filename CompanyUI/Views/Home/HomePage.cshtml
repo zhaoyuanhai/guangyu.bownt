@@ -29,6 +29,7 @@
     <link href="~/Content/style.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/Plugins/flexslider/flexslider.css" type="text/css" media="screen" />
     <link href="~/Content/Plugins/bootstrap-paginator/css/bootstrap-pagination.css" rel="stylesheet" />
+    <link href="~/Content/filetype.css" rel="stylesheet" />
     <style>
         .flex-control-nav {
             bottom: 10px;
@@ -61,6 +62,10 @@
 
         .vv > img {
             cursor: pointer;
+        }
+
+        .item-list {
+            width: 700px;
         }
     </style>
 }
@@ -243,11 +248,7 @@
             @*解决方案*@
             <div class="tab tab-sul" style="padding-top:0">
                 <div style="height:100%;overflow-y:auto;">
-                    @{
-                        var solution = entity.tb_Solution.FirstOrDefault(a => a.LanguageId == language.Id)
-                            ?? new tb_Solution();
-                    }
-                    @Html.Raw(solution.Content ?? string.Empty)
+                    @Html.Partial("FileType")
                 </div>
             </div>
             <!--loading-->

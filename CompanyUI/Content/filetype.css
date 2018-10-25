@@ -1,0 +1,42 @@
+﻿.item-list {
+    width: 1000px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+    .item-list label {
+        color: #fedf2d;
+    }
+
+    .item-list ul {
+        list-style: none;
+        padding-left: 0;
+    }
+
+        .item-list ul li {
+            border-bottom: 1px solid gray;
+            line-height: 35px;
+        }
+
+            .item-list ul li a {
+                color: white;
+            }
+
+.btns {
+    margin-bottom: 20px;
+}
+
+    .btns button {
+        background-color: gray;
+        border: 0;
+        outline: none;
+        margin-right: 5px;
+    }
+
+        .btns button.active {
+            background-color: #fedf2d;
+        }
+
+.fright {
+    float: right;
+}

@@ -21,7 +21,6 @@ namespace CompanyUI
                     "~/Content/Plugins/bootstrap/js/bootstrap.js",
                     "~/Content/Plugins/layer2.4/layer.js"
             ));
-
         }
     }
 }

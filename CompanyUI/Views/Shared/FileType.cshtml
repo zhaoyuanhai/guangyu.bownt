@@ -1,0 +1,32 @@
+﻿@using BowntDAL;
+@using CompanyUI.Models;
+@{
+    Layout = null;
+    BowntdbEntities entity = new BowntdbEntities();
+}
+
+<div class="item-list">
+    <div class="btns">
+        <button data-id="0" class="active">ALL</button>
+        @foreach (var fileType in entity.tb_FileType)
+        {
+            <button data-id="@fileType.Id">@fileType.Type</button>
+        }
+    </div>
+    @foreach (var fileType in entity.tb_FileType)
+    {
+        <div class="types" id="type_@fileType.Id">
+            <label class="title">@fileType.Type</label>
+            <ul>
+                @foreach (var file in fileType.tb_File)
+                {
+                    <li>
+                        <a href="@Url.Action("PreView", new { id = file.Id })">@file.Title</a>
+                        <a href="@Url.Action("PreView", new { id = file.Id })" class="fright"> BROWSE> </a>
+                    </li>
+                }
+            </ul>
+        </div>
+    }
+</div>
+<script src="~/Scripts/filetype.js"></script>

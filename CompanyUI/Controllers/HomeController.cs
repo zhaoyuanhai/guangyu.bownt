@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using BowntDAL;
 using CompanyUI.Models;
 using CompanyUI.App_Start;
+using System.IO;
 
 namespace CompanyUI.Controllers
 {
@@ -39,6 +40,12 @@ namespace CompanyUI.Controllers
                 var file = entity.tb_File.Find(id);
                 url = file.Path;
             }
+
+            if (Path.GetExtension(url).Equals(".pdf", StringComparison.CurrentCultureIgnoreCase))
+            {
+                return File(Server.MapPath(url), "application/pdf");
+            }
+
             return View((object)url);
         }
 

@@ -967,7 +967,9 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="uploadfilehandler.ashx" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Views\SolutionManager\Edit.cshtml" />
     <Content Include="Views\ProductManager\Add.cshtml" />
     <Content Include="Views\AboutUsManager\List.cshtml" />
@@ -1006,8 +1008,6 @@
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\Plugins\jqery.validate\jQuery.validate.js+API中文.pdf" />
-    <Content Include="Scripts\Plugins\multipleFiles\control\images\fileType\Thumbs.db" />
-    <Content Include="Scripts\Plugins\multipleFiles\control\images\Thumbs.db" />
     <Content Include="Scripts\Plugins\ueditor1.4.3\third-party\jquery-1.10.2.min.map" />
     <Content Include="Scripts\Plugins\ueditor1.4.3\third-party\video-js\font\vjs.eot" />
     <Content Include="Scripts\Plugins\ueditor1.4.3\third-party\video-js\font\vjs.ttf" />
