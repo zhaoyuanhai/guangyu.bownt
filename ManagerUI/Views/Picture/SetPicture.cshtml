@@ -54,7 +54,7 @@
             <ul class="forminfo">
                 <li>
                     <label>名称</label>
-                    <select v-if="model.PicTypeId==2" class="dfinput" v-model="model.Name" required>
+                    <select v-if="model.PicTypeId==2" name="Name" class="dfinput" v-model="model.Name" required>
                         <option v-for="item in selList">{{ item }}</option>
                     </select>
                     <input v-else name="Name" type="text" class="dfinput" v-model="model.Name" required />
