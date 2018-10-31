@@ -684,7 +684,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="TypeId" Type="Int32" Nullable="false" />
           <Property Name="Path" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="tb_FileType" Relationship="BOWNTDBModel.FK_tb_File_tb_FileType" FromRole="tb_File" ToRole="tb_FileType" />

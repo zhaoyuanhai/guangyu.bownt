@@ -1,6 +1,5 @@
 ﻿using BowntDAL;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,7 +8,7 @@ namespace ManagerUI.Controllers
 {
     public class FileManagerController : BaseController
     {
-        BowntdbEntities entities;
+        private BowntdbEntities entities;
 
         public FileManagerController()
         {
@@ -88,19 +87,20 @@ namespace ManagerUI.Controllers
             return RedirectToAction("List");
         }
 
-        public ActionResult DeleteFile()
+        public ActionResult DeleteFile(int id)
         {
-            return View();
+            var file = entities.tb_File.Find(id);
+            entities.tb_File.Remove(file);
+            entities.SaveChanges();
+            return RedirectToAction("List");
         }
 
-        public ActionResult DeleteFileType()
+        public ActionResult DeleteFileType(int id)
         {
-            return View();
-        }
-
-        public ActionResult SetFile()
-        {
-            return View();
+            var file = entities.tb_FileType.Find(id);
+            entities.tb_FileType.Remove(file);
+            entities.SaveChanges();
+            return RedirectToAction("FileType");
         }
     }
 }

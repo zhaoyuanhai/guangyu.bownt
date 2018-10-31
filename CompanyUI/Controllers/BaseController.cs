@@ -12,10 +12,15 @@ namespace CompanyUI.Controllers
 {
     public class BaseController : Controller
     {
-        protected LanguageModel Language
+        private LanguageModel languageModel;
+
+        public LanguageModel Language
         {
             get
             {
+                if (languageModel != null)
+                    return languageModel;
+
                 BowntdbEntities entity = new BowntdbEntities();
                 var list = entity.tb_Language.ToList();
                 list.Sort((a, b) => a.Sort - b.Sort);
@@ -31,7 +36,8 @@ namespace CompanyUI.Controllers
 
                     return new LanguageModel(f.Id, f.Language, f.Logogram);
                 }
-                return new LanguageModel(f.Id, f.Language, f.Logogram);
+                languageModel = new LanguageModel(f.Id, f.Language, f.Logogram);
+                return languageModel;
             }
         }
 

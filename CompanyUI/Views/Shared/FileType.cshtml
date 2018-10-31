@@ -1,19 +1,41 @@
 ﻿@using BowntDAL;
 @using CompanyUI.Models;
+@using System.IO;
 @{
     Layout = null;
     BowntdbEntities entity = new BowntdbEntities();
+
+    var controller = ViewContext.Controller as CompanyUI.Controllers.BaseController;
+    var languageId = 1;
+    if (controller != null)
+    {
+        languageId = controller.Language.Id;
+    }
+    var fileTypeList = entity.tb_FileType.Where(x => x.LanguageId == languageId);
+
+    var wordDict = new Dictionary<int, Dictionary<string, string>>();
+    wordDict.Add(1, new Dictionary<string, string>() { { "ALL", "ALL" }, { "BROWSE", "BROWSE" } });
+    wordDict.Add(2, new Dictionary<string, string>() { { "ALL", "TOUT" }, { "BROWSE", "l'innovation" } });
+    wordDict.Add(4, new Dictionary<string, string>() { { "ALL", "TODO" }, { "BROWSE", "Browse" } });
+}
+
+@functions {
+    string isPdf(string path)
+    {
+        var r = path.EndsWith(".pdf", StringComparison.CurrentCultureIgnoreCase);
+        return r ? "_blank" : "_self";
+    }
 }
 
 <div class="item-list">
     <div class="btns">
-        <button data-id="0" class="active">ALL</button>
-        @foreach (var fileType in entity.tb_FileType)
+        <button data-id="0" class="active">@wordDict[languageId]["ALL"]</button>
+        @foreach (var fileType in fileTypeList)
         {
             <button data-id="@fileType.Id">@fileType.Type</button>
         }
     </div>
-    @foreach (var fileType in entity.tb_FileType)
+    @foreach (var fileType in fileTypeList)
     {
         <div class="types" id="type_@fileType.Id">
             <label class="title">@fileType.Type</label>
@@ -21,8 +43,8 @@
                 @foreach (var file in fileType.tb_File)
                 {
                     <li>
-                        <a href="@Url.Action("PreView", new { id = file.Id })">@file.Title</a>
-                        <a href="@Url.Action("PreView", new { id = file.Id })" class="fright"> BROWSE> </a>
+                        <a href="@Url.Action("PreView", new { id = file.Id })" target="@isPdf(file.Path)">@file.Title</a>
+                        <a href="@Url.Action("PreView", new { id = file.Id })" class="fright"> @wordDict[languageId]["BROWSE"]> </a>
                     </li>
                 }
             </ul>

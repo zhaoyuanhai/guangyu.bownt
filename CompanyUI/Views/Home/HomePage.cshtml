@@ -74,7 +74,6 @@
     <script src="~/Scripts/pages/menulist.js"></script>
     <script defer src="~/Content/Plugins/flexslider/jquery.flexslider-min.js"></script>
     <script src="~/Content/Plugins/bootstrap-paginator/src/bootstrap-paginator.js"></script>
-    <script src="~/Content/Plugins/bootstrap-paginator/src/bootstrap-paginator-zh.js"></script>
     <script>
         $(function () {
             @*欢迎界面加载*@
@@ -129,14 +128,28 @@
                 onPageClicked: function (event, originalEvent, type, page) {
                     originalEvent.preventDefault();
                     originalEvent.stopPropagation();
+                    var msgid = layer.msg("loading...", { time: 0 });
                     $.ajax({
                         url: originalEvent.target.href,
                         type: "GET",
                         dataType: "json",
-                        success: function (data) {
-                            $("#content li").remove();
-                            $(data).each(function () {
-                                $("#content").append("<li>" + this.name + "</li>");
+                        success: function (res) {
+                            $("#lb>.list").remove();
+                            $(res.Data).each(function () {
+                                var html =
+                                    '<div class="list">' +
+                                    '   <a href="@Url.Action("ProductDetial", new { id= "@Id" })">' +
+                                    '       <i style="display: block;float: left;">' +
+                                    '           <img src="@@Icon" width="20" height="20" />' +
+                                    '       </i>' +
+                                    '       <span style="margin-left:10px;line-height:20px;">@@Title</span>' +
+                                    '   </a>' +
+                                    '</div>';
+                                $("#lb").append(html
+                                    .replace("@@Id", this.Id)
+                                    .replace("@@Title", this.Title)
+                                    .replace("@@Icon", this.Icon));
+                                layer.close(msgid);
                             });
                         },
                         error: function (error) { alert("error"); }
